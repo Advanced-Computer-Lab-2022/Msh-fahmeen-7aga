@@ -13,10 +13,15 @@ const SignUp = () => {
 
         e.preventDefault()
 
-        await signup(FirstName, Lastname, Username, Email, Password)
+        await 
+        signup(FirstName, Lastname, Username, Email, Password)
     }
 
+
+
     return(
+
+      
         <form className="Signup" onSubmit={handleSubmit}>
             <h3>Sign up</h3>
 
@@ -59,7 +64,11 @@ const SignUp = () => {
       <button disabled={isLoading}>Sign Up</button>
       {error && <div className="error">{error}</div>}
         </form>
+
+        
     )
+
+    
 }
 
 export default SignUp

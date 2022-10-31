@@ -52,6 +52,7 @@ const Student = () => {
 
 
                 <div className='Courses'>
+                <h3>All courses:</h3>
                 {courses && courses.filter((course)=>{
                     if(searchterm==""){
                         return course
