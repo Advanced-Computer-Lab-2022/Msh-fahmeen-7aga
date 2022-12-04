@@ -15,9 +15,9 @@ const GetCourses = async (req, res) => {
 }
 
 const InstGetCourses = async (req, res) => {
-    const InstCourses = await instcourse.find({}).sort({createdAt: -1})
+    const InstCourse = await instcourse.find({}).sort({createdAt: -1})
 
-    res.status(200).json(InstCourses)
+    res.status(200).json(InstCourse)
 }
 
 //Get single course

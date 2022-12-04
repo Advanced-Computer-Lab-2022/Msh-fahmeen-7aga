@@ -1,5 +1,4 @@
-import { UseCourseContext } from '../Hooks/UseCourseContext'
-import {UseLoginContext} from '../Hooks/UseLoginContext'
+
 import ReactStars from "react-rating-stars-component";
 import React from "react";
 
@@ -9,10 +8,7 @@ import React from "react";
  
  
   
-const CourseDetails = ({ course }) => {
-    const {dispatch} = UseCourseContext()
-    const {student} = UseLoginContext()
-
+const InstructorDetails = ({ instructor }) => {
        
 const ratingChanged = (newRating) => {
         console.log(newRating)
@@ -20,11 +16,8 @@ const ratingChanged = (newRating) => {
      }  
 
     return(
-        <div className="course-details">
-            <h4>{course.title}</h4>
-            <p><strong>Subtitle: </strong> {course.subtitle}</p>
-            <p><strong>Summary: </strong> {course.summary}</p>
-            <p><strong>Price: </strong> {course.price}</p>
+        <div className="instructor details">
+            <h4>{instructor.FirstName}</h4>
             <strong>Rate:</strong>
             <ReactStars
     count={5}
@@ -43,7 +36,4 @@ const ratingChanged = (newRating) => {
 
     
 }
-export default CourseDetails
-
-
-
+export default InstructorDetails

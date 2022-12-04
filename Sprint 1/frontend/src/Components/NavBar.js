@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom'
 import { UseLogout } from '../Hooks/UseLogout'
+import { UseLogoutinst } from '../Hooks/UseLogoutInst'
 import { UseLoginContext } from '../Hooks/UseLoginContext'
+import { UseLoginContextInst } from '../Hooks/UseLoginContextInst'
 
 const Navbar = () => {
   const { logout } = UseLogout()
+  const { logoutinst } = UseLogoutinst()
   const { student } = UseLoginContext()
+  const { instructor } = UseLoginContextInst()
 
   const handleClick = () => {
     logout()

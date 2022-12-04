@@ -3,8 +3,8 @@ import {Link } from "react-router-dom";
 const HomePage = () => {
     return(
         <div className="HomePage">
-            <Link to="/Instructor"><button>
-              Instructor
+            <Link to="/Instructorlogin"><button>
+              Instructor Login
             </button>
             </Link>
             <Link to="/admin"><button>

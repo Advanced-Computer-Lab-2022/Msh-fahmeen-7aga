@@ -9,6 +9,7 @@ import InstForm from '../Components/InstructorForm'
 import TraineeForm from '../Components/TraineeForm'
 import CourseDetailsnp from '../Components/CourseDetailsNoPrice'
 
+
 const Trainee = () => {
     const [courses, setCourses]=useState(null)
     const[searchterm,setsearchterm] =useState("")
@@ -21,7 +22,6 @@ const Trainee = () => {
                 setCourses(json)
             }
         }
-
         fetchCourses()
     }, [])
     
@@ -48,7 +48,7 @@ const Trainee = () => {
                     }
                 
                 }).map((courses) =>(
-                    <CourseDetails course={courses} key = {courses._id}
+                    <CourseDetailsnp course={courses} key = {courses._id}
                     />
                 ))}
             </div>

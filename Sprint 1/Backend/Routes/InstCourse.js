@@ -3,12 +3,18 @@ const {
     CreateCourse,
     GetCourse,
     GetCourses,
-    InstGetCourses,
-    InstCreateCourse
+    InstGetCourses
 } = require('../Controllers/CourseController')
 
 
+
+
+const RequireAuth = require('../Middleware/RequireAuthins')
+
+
 const router = express.Router()
+
+router.use(RequireAuth)
 
 // Get all courses
 router.get('/viewcourses', GetCourses)
@@ -23,6 +29,8 @@ router.get('/:id', GetCourse)
 router.post('/addcourse', CreateCourse)
 
 //Post new course for you (postman)
-router.post('/instaddcourse', InstCreateCourse)
+
+
+
 
 module.exports = router

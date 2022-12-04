@@ -1,4 +1,7 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
+import { UseLoginContext } from './Hooks/UseLoginContext';
+import { UseLoginContextInst } from './Hooks/UseLoginContextInst';
+
 import NavBar from './Components/NavBar';
 import Admin from './Pages/Admin';
 import Guest from './Pages/Guest';
@@ -8,8 +11,13 @@ import Student from './Pages/Student';
 import Trainee from './Pages/Trainee';
 import SignUp from './Pages/SignUp';
 import LogIn from './Pages/StudentLogin';
+import LogIninst from './Pages/InstructorLogin';
+import SignUpinst from './Pages/InstructorSignup';
 
 function App() {
+  const {student} = UseLoginContext()
+  const {instructor} = UseLoginContextInst()
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -23,12 +31,22 @@ function App() {
 
          <Route 
           exact path="/studentlogin"
-          element={<LogIn />}
+          element={!student ? <LogIn /> : <Navigate to="/student" />}
+          />
+
+           <Route 
+          exact path="/instructorlogin"
+          element={!instructor ? <LogIninst /> : <Navigate to="/instructor" />}
+          />
+
+           <Route 
+          exact path="/instructorsignup"
+          element={!instructor ? <SignUpinst /> : <Navigate to="/instructor" />}
           />
 
         <Route 
           exact path="/studentsignup"
-          element={<SignUp />}
+          element={!student ?<SignUp />: <Navigate to="/student" />}
           />
 
         <Route 
@@ -37,12 +55,12 @@ function App() {
           />
         <Route 
           path="/Instructor"
-          element={<Instructor />}
+          element={instructor ? <Instructor /> : <Navigate to="/" />}
           />
 
         <Route 
           path="/student"
-          element={<Student />}
+          element={student ? <Student /> : <Navigate to="/" />}
           /> 
 
 <Route 

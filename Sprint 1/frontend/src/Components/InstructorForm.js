@@ -1,9 +1,16 @@
 import { useState } from "react"
+import { redirect } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 const InstForm = () => {
     const[Username, setUsername] = useState('')
     const[Password, setPassword] = useState('')
     const[error, setError] = useState(null)
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate("/instructor");
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -27,11 +34,12 @@ const InstForm = () => {
             setPassword('')
             setError(null)
             console.log('New Instructor added', json)
+            handleClick()
         }
     }
 
     return(
-        <form className="create" onSubmit={handleSubmit}>
+        <form className="create" onSubmit={handleSubmit && handleClick}>
             <h3>Add a new Instructor</h3>
 
             <label>Username:</label>

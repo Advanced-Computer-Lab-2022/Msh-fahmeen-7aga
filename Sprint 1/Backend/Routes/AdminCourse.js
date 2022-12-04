@@ -5,8 +5,10 @@ const {
     GetCourses,
     AddAdmin,
     AddInstructor,
-    AddTrainee
+    AddTrainee,
 } = require('../Controllers/CourseController')
+
+const {InstructorSignup} = require('../Controllers/InstructorController')
 
 
 const router = express.Router()
@@ -28,5 +30,8 @@ router.post('/addinstructor', AddInstructor)
 
 //add new trainee
 router.post('/addtrainee', AddTrainee)
+
+//instructor sign up
+router.post('/instructorsignup', InstructorSignup)
 
 module.exports = router

@@ -1,5 +1,6 @@
 import{useEffect, useState} from 'react'
 import { UseCourseContext } from '../Hooks/UseCourseContext'
+import {Link } from "react-router-dom";
 
 
 //Components
@@ -51,10 +52,15 @@ const Admin = () => {
                     <CourseDetails course={courses} key = {courses._id}
                     />
                 ))}
+
+                
             </div>
+            <Link to="/Instructorsignup"><button>
+              New Instructor
+            </button>
+            </Link>
             <CourseForm />
             <AdminForm />
-            <InstForm />
             <TraineeForm />
         </div>
     )
