@@ -13,7 +13,6 @@ import SignUp from './Pages/SignUp';
 import LogIn from './Pages/StudentLogin';
 import LogIninst from './Pages/InstructorLogin';
 import SignUpinst from './Pages/InstructorSignup';
-import CourseDetails from './Components/CourseDetails';
 import Course from './Pages/Course';
 
 function App() {

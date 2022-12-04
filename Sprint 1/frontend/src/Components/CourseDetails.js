@@ -16,7 +16,7 @@ const CourseDetails = ({ course }) => {
        
 const ratingChanged = (newRating) => {
         console.log(newRating)
-       
+        console.log(course._id)
      }  
 
     return(
@@ -32,7 +32,7 @@ const ratingChanged = (newRating) => {
     size={24}
     activeColor="#ffd700"
   />
-           <button onClick={()=> window.location.href=`/courseId=${course._id}`}>view course
+           <button onClick={()=> window.location.href=`/student/filter?courseId=${course._id}`}>view course
            
            
            </button>
