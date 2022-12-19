@@ -11,7 +11,7 @@ const Course=()=>{
     const {student} = UseLoginContext()
     const params = new URLSearchParams(window.location.search);
     const courseId = params.get('courseId');
-    console.log(courseId);
+   // console.log(courseId);
     useEffect(() => {
         const fetchCourses = async () => {
           
@@ -21,6 +21,7 @@ const Course=()=>{
             headers: {'Authorization': `Bearer ${student.token}`},
           })
           const json = await response.json()
+          
     
           if (response.ok) {
             dispatch({type: 'SET_COURSE', payload: json})

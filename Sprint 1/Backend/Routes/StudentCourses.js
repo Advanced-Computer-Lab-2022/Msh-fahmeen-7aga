@@ -3,7 +3,6 @@ const {
     GetCourse,
     GetCourses
 } = require('../Controllers/CourseController')
-
 const {
     GetInstructor
 } = require('../Controllers/InstructorController')
@@ -21,6 +20,9 @@ router.get('/viewcourses', GetCourses)
 router.get('/:id', GetCourse)
 
 router.get('/viewinstructors', GetInstructor)
+
+// router.put('/rating', RequireAuth,rateCourse) //route to rate
+
 
 
 module.exports = router

@@ -5,6 +5,7 @@ const trainee = require('../Models/TraineeModel')
 const instcourse = require('../Models/InstCourses')
 
 const mongoose = require('mongoose')
+const CourseModel = require('../Models/CourseModel')
 
 //Get all courses
 
@@ -98,6 +99,43 @@ const AddTrainee = async (req, res) => {
     }
 }
 
+const rateCourse = async (req,res)=>{
+    try{
+        //const{_id} = req.Student
+       // console.log(_id)
+   
+    var totRat = ''
+    const rating = req.body
+     var sum = 0
+
+    // console.log(rating.cid)
+    await CourseModel.findById(rating.cid).then(function(doc){rat = doc.totalRating})
+    totRat = rat.concat(rating.newRating + " ")
+     await CourseModel.findByIdAndUpdate(rating.cid,{totalRating: totRat})
+     const num = totRat.split(" ")
+          num.forEach((element, index) => {
+            if(index != num.length-1)
+            sum += parseInt(element)
+           
+      });
+         sum = sum/(num.length-1)
+      
+    await CourseModel.findByIdAndUpdate(rating.cid,{Rating: sum}).then(function(doc){console.log(doc)})
+      
+   // let alreadyRated= CourseModel.Rating.find((studId)=> studId.postedBy.toString()===_id.toString());
+    // if(alreadyRated){
+    //     console.log ('smth')
+    // }
+    // else{
+    //     console.log('ojkahuishi')
+    //     course.Rating
+    // }
+}
+    catch(error){
+        res.status(400).json({Error: error.message})
+    }
+}
+
 
 
 module.exports ={
@@ -108,5 +146,7 @@ module.exports ={
     AddInstructor,
     AddTrainee,
     InstCreateCourse,
-    InstGetCourses
+    InstGetCourses,
+    rateCourse
+
 }

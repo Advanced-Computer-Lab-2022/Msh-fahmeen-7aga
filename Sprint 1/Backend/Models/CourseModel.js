@@ -26,6 +26,15 @@ const courseschema = new Schema({
     Subject: {
         type: String,
         required: true
+    },
+    Rating: {
+        type: Number,
+        postedBy:{type: mongoose.Schema.Types.ObjectId, ref:"Student"},
+        default : 0
+    },
+    totalRating:{
+        type: String,
+        default: 0
     }
 }, {timestamps: true})
 

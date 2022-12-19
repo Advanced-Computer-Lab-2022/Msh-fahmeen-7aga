@@ -1,5 +1,8 @@
 const Student = require('../Models/Studentmodel')
 const jsonwebtoken = require('jsonwebtoken')
+const Studentmodel = require('../Models/Studentmodel')
+const CourseModel = require('../Models/CourseModel')
+
 
 const GenerateToken = (_id) => {
     return jsonwebtoken.sign({_id} , process.env.Konafa_bel_laban, {expiresIn: '1d'})
@@ -12,7 +15,7 @@ const StudentLogin = async (req, res) => {
     
         //Tokenization
         const token = GenerateToken(student._id)
-    
+        
         res.status(200).json({Email, token})
     } catch(error){
         res.status(400).json({Error: error.message})
@@ -36,5 +39,6 @@ try{
 }
 
 }
+
 
 module.exports = {StudentLogin, StudentSignup}
