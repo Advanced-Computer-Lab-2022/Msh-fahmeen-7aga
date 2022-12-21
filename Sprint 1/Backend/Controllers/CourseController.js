@@ -6,6 +6,7 @@ const instcourse = require('../Models/InstCourses')
 
 const mongoose = require('mongoose')
 const CourseModel = require('../Models/CourseModel')
+const Studentmodel = require('../Models/Studentmodel')
 
 //Get all courses
 
@@ -101,35 +102,86 @@ const AddTrainee = async (req, res) => {
 
 const rateCourse = async (req,res)=>{
     try{
-        //const{_id} = req.Student
-       // console.log(_id)
-   
-    var totRat = ''
+     var value;
+     var total;
     const rating = req.body
-     var sum = 0
 
-    // console.log(rating.cid)
-    await CourseModel.findById(rating.cid).then(function(doc){rat = doc.totalRating})
-    totRat = rat.concat(rating.newRating + " ")
-     await CourseModel.findByIdAndUpdate(rating.cid,{totalRating: totRat})
-     const num = totRat.split(" ")
-          num.forEach((element, index) => {
-            if(index != num.length-1)
-            sum += parseInt(element)
-           
-      });
-         sum = sum/(num.length-1)
+   
+          var tr = {score:rating.newRating,postedBy: rating.email} // POSSIBLE SOL
       
-    await CourseModel.findByIdAndUpdate(rating.cid,{Rating: sum}).then(function(doc){console.log(doc)})
-      
-   // let alreadyRated= CourseModel.Rating.find((studId)=> studId.postedBy.toString()===_id.toString());
-    // if(alreadyRated){
-    //     console.log ('smth')
-    // }
-    // else{
-    //     console.log('ojkahuishi')
-    //     course.Rating
-    // }
+     await CourseModel.find({'totalRating.postedBy':rating.email,_id:rating.cid}).then(function(doc){
+        if(doc.length===0){
+             CourseModel.findByIdAndUpdate(rating.cid,{$push:{totalRating:tr}},function(err,succ){
+                if(err){
+                            console.log(err)
+                        }
+                        else{
+                             console.log(succ)
+                         }
+                       })
+        }
+        else{
+            
+            console.log('u done it m8')
+
+        }
+        //console.log(doc)
+    })
+
+
+// CourseModel.aggregate([
+//     {$match:{_id:mongoose.Types.ObjectId(cid)}},
+//     {$addFields: { totalRating: {$sum:'$totalRating.score'}}}
+    
+// ]).exec((err, result) => {
+//     if (err) {
+//         console.log(err)
+//     }
+
+//     let total = result[0].totalRating //The sum of all ratings
+    
+// }) 
+
+    const cid = rating.cid
+// CourseModel.aggregate([
+//     {$match:{_id:mongoose.Types.ObjectId(cid)}},
+//     {$project:{totalRating:{$size:'$totalRating'}}}
+// ]).exec((err, result) => {
+//     if (err) {
+//         console.log(err)
+//     }
+   
+//     let value = result[0].totalRating //total number of ratings
+    
+// })
+
+ CourseModel.aggregate([
+     {$match:{_id:mongoose.Types.ObjectId(cid)}},
+     {$addFields: { totalRating: {$sum:'$totalRating.score'}}}
+    
+ ]).exec((err, result) => {
+    if (err) {
+         console.log(err)
+     }
+    
+
+   let total = result[0].totalRating //The sum of all ratings
+   console.log(value,total)
+   CourseModel.aggregate([
+    {$match:{_id:mongoose.Types.ObjectId(cid)}},
+    {$project:{totalRating:{$size:'$totalRating'}}}
+   ]).exec((err,res)=>{
+    let value = res[0].totalRating
+    console.log(value,total)
+    value = total/value
+    console.log(value,total)
+    CourseModel.findByIdAndUpdate(cid,{Rating:value}).then(function(doc){console.log(doc)})
+   })
+}) 
+
+
+
+
 }
     catch(error){
         res.status(400).json({Error: error.message})

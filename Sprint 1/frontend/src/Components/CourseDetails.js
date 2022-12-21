@@ -17,11 +17,11 @@ const CourseDetails = ({ course }) => {
     const {student} = UseLoginContext()
     
          const ratingChanged = async (newRating) => {
-           console.log(student.token)
+           const email = student.Email
             const cid = course._id
             const response = await fetch('http://localhost:4000/guest/rating', {
                 method: 'PUT',
-                body: JSON.stringify({newRating,cid}),
+                body: JSON.stringify({newRating,cid, email}),
                 headers: {
                     'Content-Type': 'application/json',
                 } 

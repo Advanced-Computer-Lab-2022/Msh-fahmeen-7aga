@@ -32,10 +32,10 @@ const courseschema = new Schema({
         postedBy:{type: mongoose.Schema.Types.ObjectId, ref:"Student"},
         default : 0
     },
-    totalRating:{
-        type: String,
-        default: 0
-    }
+    totalRating:[{
+        score: Number,
+        postedBy: String
+    }]
 }, {timestamps: true})
 
 module.exports = mongoose.model('Course', courseschema)
