@@ -17,7 +17,7 @@ const GetCourses = async (req, res) => {
 }
 
 const InstGetCourses = async (req, res) => {
-    const InstCourse = await instcourse.find({}).sort({createdAt: -1})
+    const InstCourse = await course.find({}).sort({createdAt: -1})
 
     res.status(200).json(InstCourse)
 }
@@ -129,31 +129,10 @@ const rateCourse = async (req,res)=>{
     })
 
 
-// CourseModel.aggregate([
-//     {$match:{_id:mongoose.Types.ObjectId(cid)}},
-//     {$addFields: { totalRating: {$sum:'$totalRating.score'}}}
-    
-// ]).exec((err, result) => {
-//     if (err) {
-//         console.log(err)
-//     }
-
-//     let total = result[0].totalRating //The sum of all ratings
-    
-// }) 
+ 
 
     const cid = rating.cid
-// CourseModel.aggregate([
-//     {$match:{_id:mongoose.Types.ObjectId(cid)}},
-//     {$project:{totalRating:{$size:'$totalRating'}}}
-// ]).exec((err, result) => {
-//     if (err) {
-//         console.log(err)
-//     }
-   
-//     let value = result[0].totalRating //total number of ratings
-    
-// })
+
 
  CourseModel.aggregate([
      {$match:{_id:mongoose.Types.ObjectId(cid)}},

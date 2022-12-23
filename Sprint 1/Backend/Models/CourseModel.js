@@ -28,9 +28,9 @@ const courseschema = new Schema({
         required: true
     },
     Rating: {
-        type: Number,
-        postedBy:{type: mongoose.Schema.Types.ObjectId, ref:"Student"},
-        default : 0
+        type: Number
+       
+    
     },
     totalRating:[{
         score: Number,
