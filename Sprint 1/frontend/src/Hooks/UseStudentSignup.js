@@ -24,7 +24,7 @@ export const UseStudentSignup = () => {
         if(response.ok){
             //saving user locally
             localStorage.setItem('student', JSON.stringify(json))
-
+            
             //Update login context
             dispatch({type: 'LOGIN', payload: json})
 

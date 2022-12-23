@@ -5,6 +5,8 @@ const trainee = require('../Models/TraineeModel')
 const instcourse = require('../Models/InstCourses')
 
 const mongoose = require('mongoose')
+const CourseModel = require('../Models/CourseModel')
+const Studentmodel = require('../Models/Studentmodel')
 
 //Get all courses
 
@@ -15,7 +17,7 @@ const GetCourses = async (req, res) => {
 }
 
 const InstGetCourses = async (req, res) => {
-    const InstCourse = await instcourse.find({}).sort({createdAt: -1})
+    const InstCourse = await course.find({}).sort({createdAt: -1})
 
     res.status(200).json(InstCourse)
 }
@@ -98,6 +100,73 @@ const AddTrainee = async (req, res) => {
     }
 }
 
+const rateCourse = async (req,res)=>{
+    try{
+     var value;
+     var total;
+    const rating = req.body
+
+   
+          var tr = {score:rating.newRating,postedBy: rating.email} // POSSIBLE SOL
+      
+     await CourseModel.find({'totalRating.postedBy':rating.email,_id:rating.cid}).then(function(doc){
+        if(doc.length===0){
+             CourseModel.findByIdAndUpdate(rating.cid,{$push:{totalRating:tr}},function(err,succ){
+                if(err){
+                            console.log(err)
+                        }
+                        else{
+                             console.log(succ)
+                         }
+                       })
+        }
+        else{
+            
+            console.log('u done it m8')
+
+        }
+        //console.log(doc)
+    })
+
+
+ 
+
+    const cid = rating.cid
+
+
+ CourseModel.aggregate([
+     {$match:{_id:mongoose.Types.ObjectId(cid)}},
+     {$addFields: { totalRating: {$sum:'$totalRating.score'}}}
+    
+ ]).exec((err, result) => {
+    if (err) {
+         console.log(err)
+     }
+    
+
+   let total = result[0].totalRating //The sum of all ratings
+   console.log(value,total)
+   CourseModel.aggregate([
+    {$match:{_id:mongoose.Types.ObjectId(cid)}},
+    {$project:{totalRating:{$size:'$totalRating'}}}
+   ]).exec((err,res)=>{
+    let value = res[0].totalRating
+    console.log(value,total)
+    value = total/value
+    console.log(value,total)
+    CourseModel.findByIdAndUpdate(cid,{Rating:value}).then(function(doc){console.log(doc)})
+   })
+}) 
+
+
+
+
+}
+    catch(error){
+        res.status(400).json({Error: error.message})
+    }
+}
+
 
 
 module.exports ={
@@ -108,5 +177,7 @@ module.exports ={
     AddInstructor,
     AddTrainee,
     InstCreateCourse,
-    InstGetCourses
+    InstGetCourses,
+    rateCourse
+
 }

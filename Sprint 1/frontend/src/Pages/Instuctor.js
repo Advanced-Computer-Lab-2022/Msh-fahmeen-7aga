@@ -15,7 +15,7 @@ import InstForm from '../Components/InstructorForm'
 import TraineeForm from '../Components/TraineeForm'
 import PriceFilter from "../Components/PriceFilter";
 import CourseFormins from '../Components/INScourseform'
-
+import InsCourse from '../Components/InsCourse'
 
 const Instructor = () => {
     const {courses, dispatch} = UseCourseContext()
@@ -99,7 +99,7 @@ const Instructor = () => {
                     }
                   })
                 .map((courses) =>(
-                    <CourseDetails course={courses} key = {courses._id}
+                    <InsCourse course={courses} key = {courses._id}
                     />
                 ))}
 

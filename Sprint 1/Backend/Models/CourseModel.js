@@ -26,7 +26,16 @@ const courseschema = new Schema({
     Subject: {
         type: String,
         required: true
-    }
+    },
+    Rating: {
+        type: Number
+       
+    
+    },
+    totalRating:[{
+        score: Number,
+        postedBy: String
+    }]
 }, {timestamps: true})
 
 module.exports = mongoose.model('Course', courseschema)
