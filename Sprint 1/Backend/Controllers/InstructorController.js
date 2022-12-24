@@ -43,4 +43,7 @@ const GetInstructor = async (req, res) => {
     res.status(200).json(instructor)
 }
 
+
+  
+
 module.exports = {InstructorLogin, InstructorSignup, GetInstructor}

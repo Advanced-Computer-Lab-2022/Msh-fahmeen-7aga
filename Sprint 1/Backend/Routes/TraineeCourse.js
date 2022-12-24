@@ -2,7 +2,8 @@ const express = require('express')
 const {
     GetCourse,
     GetCourses,
-    InstCreateCourse
+    InstCreateCourse,
+    GetInstructor
 } = require('../Controllers/CourseController')
 
 const router = express.Router()
@@ -16,6 +17,8 @@ router.get('/viewcourses', GetCourses)
 router.get('/:id', GetCourse)
 
 router.post('/instaddcourse', InstCreateCourse)
+
+
 
 
 module.exports = router

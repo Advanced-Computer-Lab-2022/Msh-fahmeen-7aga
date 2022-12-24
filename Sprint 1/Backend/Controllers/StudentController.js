@@ -39,6 +39,28 @@ try{
 }
 
 }
+const rateCourse = async (req,res)=>{
+    try{
+        const{_id} = req.Student
+    const{rating, courseId} = req.body
+    console.log('botato')
+    const course = await CourseModel.findById(courseId);
+    let alreadyRated= CourseModel.Rating.find((studId)=> studId.postedBy.toString()===_id.toString());
+    if(alreadyRated){
+        console.log('smth')
+    }
+    else{
+        console.log('ojkahuishi')
+    }
+}
+    catch(error){
+        res.status(400).json({Error: error.message})
+    }
+}
 
+<<<<<<< Updated upstream
 
 module.exports = {StudentLogin, StudentSignup}
+=======
+module.exports = {StudentLogin, StudentSignup, rateCourse}
+>>>>>>> Stashed changes

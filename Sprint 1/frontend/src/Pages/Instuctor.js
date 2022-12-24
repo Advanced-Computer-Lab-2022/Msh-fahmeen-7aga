@@ -2,6 +2,7 @@ import{useEffect, useState} from 'react'
 import { UseCourseContext } from '../Hooks/UseCourseContext'
 import {UseLoginContextInst} from '../Hooks/UseLoginContextInst'
 import { UseLogoutinst } from '../Hooks/UseLogoutInst'
+import { Link } from 'react-router-dom';
 
 
 
@@ -54,6 +55,15 @@ const Instructor = () => {
     
     return(
         <div className="instructor">
+
+<Link to="/Passwordchange">
+        <button>Change my Password</button>
+      </Link>
+
+<Link to="/contract-details">
+  <button>Contract</button>
+</Link>
+
 
 <button onClick={handleClick}>Log out</button>
 

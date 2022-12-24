@@ -1,47 +1,40 @@
-import {useState} from 'react'
-import { UseInstructorLogin } from '../Hooks/UseLoginInst'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { UseInstructorLogin } from '../Hooks/UseLoginInst';
 
 const LogIninst = () => {
-    const [FirstName, setFirstName] = useState('')
-    const [Lastname, setLastName] = useState('')
-    const [Email, setEmail] = useState('')
-    const [Password, setPassword] = useState('')
-    const {login, error, isLoading} = UseInstructorLogin()
+  const [Email, setEmail] = useState('');
+  const [Password, setPassword] = useState('');
+  const { login, error, isLoading } = UseInstructorLogin();
 
-    const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await login(Email, Password);
+  };
 
-        e.preventDefault()
+  return (
+    <form className="Login" onSubmit={handleSubmit}>
+      <h3>Login</h3>
 
-        await login(Email, Password)
-    }
-
-    return(
-        <form className="Login" onSubmit={handleSubmit}>
-            <h3>Login</h3>
-
-
-           <label>Email:</label>
-            <input 
-        type="email" 
-        onChange={(e) => setEmail(e.target.value)} 
-        value={Email} 
+      <label>Email:</label>
+      <input
+        type="email"
+        onChange={(e) => setEmail(e.target.value)}
+        value={Email}
       />
 
-           <label>Password</label>
-            <input 
-        type="password" 
-        onChange={(e) => setPassword(e.target.value)} 
-        value={Password} 
+      <label>Password</label>
+      <input
+        type="password"
+        onChange={(e) => setPassword(e.target.value)}
+        value={Password}
       />
-
 
       <button disabled={isLoading}>Login</button>
+      <Link to="/forgotpassword">Forgot Password</Link>
       {error && <div className="error">{error}</div>}
-        </form>
+    </form>
+  );
+};
 
-        
-    )
-    
-}
-
-export default LogIninst
+export default LogIninst;

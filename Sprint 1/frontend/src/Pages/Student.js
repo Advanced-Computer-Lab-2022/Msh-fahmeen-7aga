@@ -1,22 +1,24 @@
-import{useEffect, useState} from 'react'
-import { UseCourseContext } from '../Hooks/UseCourseContext'
-import {UseLoginContext} from '../Hooks/UseLoginContext'
-
+import React, { useState, useEffect } from 'react';
+import { UseCourseContext } from '../Hooks/UseCourseContext';
+import { UseLoginContext } from '../Hooks/UseLoginContext';
 
 //Components
-import CourseDetails from '../Components/CourseDetails'
-import CourseForm from '../Components/CourseForm'
-import AdminForm from '../Components/AdminForm'
-import InstForm from '../Components/InstructorForm'
-import TraineeForm from '../Components/TraineeForm'
-import Search from '../Components/Search'
-
-
+import CourseDetails from '../Components/CourseDetails';
+import CourseForm from '../Components/CourseForm';
+import AdminForm from '../Components/AdminForm';
+import InstForm from '../Components/InstructorForm';
+import TraineeForm from '../Components/TraineeForm';
+import Search from '../Components/Search';
 
 const Student = () => {
-    const {courses, dispatch} = UseCourseContext()
-     const {student} = UseLoginContext()
-     const[searchterm,setsearchterm] =useState("")
+const { courses, dispatch } = UseCourseContext();
+const { student } = UseLoginContext();
+const [searchterm, setsearchterm] = useState('');
+const [selectedCountry, setSelectedCountry] = useState('USD');
+const [exchangeRates, setExchangeRates] = useState({});
+const [localPrices, setLocalPrices] = useState({});
+
+
 
 
 
@@ -63,8 +65,7 @@ const Student = () => {
                     }
                 
                 }).map((courses) =>(
-                    <CourseDetails course={courses} key = {courses._id}
-                    />
+                    <CourseDetails course={courses} key = {courses._id}  />
                 ))}
             </div>
         </div>

@@ -1,7 +1,8 @@
 const express = require('express')
 const {
     GetCourse,
-    GetCourses
+    GetCourses,
+    
 } = require('../Controllers/CourseController')
 const {
     GetInstructor
@@ -20,6 +21,12 @@ router.get('/viewcourses', GetCourses)
 router.get('/:id', GetCourse)
 
 router.get('/viewinstructors', GetInstructor)
+
+// router.put('/rating', RequireAuth,rateCourse) //route to rate
+
+
+
+  
 
 // router.put('/rating', RequireAuth,rateCourse) //route to rate
 

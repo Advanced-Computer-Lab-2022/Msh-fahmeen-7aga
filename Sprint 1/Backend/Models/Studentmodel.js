@@ -28,6 +28,7 @@ const StudentSchema = new Schema({
         type: String,
         required: true
     },
+    registeredCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }],
 }, {timestamps: true})
 
 //Signup
