@@ -1,7 +1,7 @@
 import { UseCourseContext } from '../Hooks/UseCourseContext'
 import {UseLoginContext} from '../Hooks/UseLoginContext'
 import React from "react";
-import ReactStars from "react-rating-stars-component";
+
 
 
 
@@ -14,7 +14,7 @@ import ReactStars from "react-rating-stars-component";
 const CourseDetails = ({ course }) => {
     const {dispatch} = UseCourseContext()
     const {student} = UseLoginContext()
-    console.log(course)
+
          
 
 

@@ -1,8 +1,10 @@
 import { UseCourseContext } from '../Hooks/UseCourseContext'
 import {UseLoginContext} from '../Hooks/UseLoginContext'
-import Rating from '@mui/material/Rating'
 import React from "react";
 import ReactStars from "react-rating-stars-component";
+
+
+
 
 
 
@@ -15,7 +17,21 @@ import ReactStars from "react-rating-stars-component";
 const CourseDetails = ({ course }) => {
     const {dispatch} = UseCourseContext()
     const {student} = UseLoginContext()
-    
+const checkpromo = async (cid)=>{
+    const response = await fetch('http://localhost:4000/guest/checkPromotion', {
+        method: 'PUT',
+        body: JSON.stringify({cid}),
+        headers: {
+            'Content-Type': 'application/json',
+        } 
+    })
+}
+     if(course.hasPromo===true){
+        const cid = course._id
+        checkpromo(cid)
+        
+     }
+   
          const ratingChanged = async (newRating) => {
            const email = student.Email
             const cid = course._id

@@ -35,7 +35,15 @@ const courseschema = new Schema({
     totalRating:[{
         score: Number,
         postedBy: String
-    }]
+    }],
+    Promotion:{
+        oldPrice: Number,
+        discount: Number,
+        until: Date,
+    },
+    hasPromo:{
+        type:Boolean
+    }
 }, {timestamps: true})
 
 module.exports = mongoose.model('Course', courseschema)

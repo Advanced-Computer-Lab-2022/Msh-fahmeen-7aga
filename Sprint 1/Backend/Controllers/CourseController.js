@@ -7,6 +7,7 @@ const instcourse = require('../Models/InstCourses')
 const mongoose = require('mongoose')
 const CourseModel = require('../Models/CourseModel')
 const Studentmodel = require('../Models/Studentmodel')
+const { findByIdAndDelete } = require('../Models/CourseModel')
 
 //Get all courses
 
@@ -57,7 +58,7 @@ const InstCreateCourse = async (req, res) => {
     const{title, subtitle, price, summary, Subject} = req.body
     //adds course to db
     try{
-        const InstCourses = await instcourse.create({title, subtitle, price, summary, Subject})
+        const InstCourses = await course.create({title, subtitle, price, summary, Subject})
         res.status(200).json(InstCourses)
     }catch (error){
         res.status(400).json({error: error.message})
@@ -102,10 +103,11 @@ const AddTrainee = async (req, res) => {
 
 const rateCourse = async (req,res)=>{
     try{
+        
      var value;
      var total;
     const rating = req.body
-
+   
    
           var tr = {score:rating.newRating,postedBy: rating.email} // POSSIBLE SOL
       
@@ -122,18 +124,18 @@ const rateCourse = async (req,res)=>{
         }
         else{
             
-            console.log('u done it m8')
+            console.log('Already rated')
 
         }
         //console.log(doc)
     })
 
 
- 
+
 
     const cid = rating.cid
-
-
+   
+ 
  CourseModel.aggregate([
      {$match:{_id:mongoose.Types.ObjectId(cid)}},
      {$addFields: { totalRating: {$sum:'$totalRating.score'}}}
@@ -154,8 +156,8 @@ const rateCourse = async (req,res)=>{
     console.log(value,total)
     value = total/value
     console.log(value,total)
-    CourseModel.findByIdAndUpdate(cid,{Rating:value}).then(function(doc){console.log(doc)})
-   })
+    CourseModel.findByIdAndUpdate(cid,{$push:{Rating:value}}).then(function(doc){console.log(doc)})
+    })
 }) 
 
 
@@ -167,6 +169,35 @@ const rateCourse = async (req,res)=>{
     }
 }
 
+const setPromotion = async (req,res) =>{
+     const prom = req.body
+     const newPrice =  prom.oldPrice - (prom.discount/100) * prom.oldPrice 
+     var pr = {oldPrice:prom.oldPrice, discount:prom.discount, until:prom.until}
+     await CourseModel.findByIdAndUpdate(prom.cid,{Promotion:pr})
+     await CourseModel.findByIdAndUpdate(prom.cid,{hasPromo:true})
+     await CourseModel.findByIdAndUpdate(prom.cid,{price:newPrice.toFixed(2)})
+     CourseModel.findById(prom.cid).then(function(doc){console.log(doc)})
+    
+     
+
+}
+
+const checkPromotion = async (req,res)=>{
+    const cid = req.body
+    var flag;
+    const currentTime = new Date().toDateString()
+    
+    await CourseModel.findById(cid.cid).then(function(doc)
+    {if((doc.Promotion.until).toDateString()<currentTime){
+        flag = 0;
+     CourseModel.findByIdAndUpdate(cid.cid,{price:doc.Promotion.oldPrice})
+    .then(CourseModel.findByIdAndUpdate(cid.cid,{hasPromo:false})).then(function(doc){console.log(doc)})
+    }})
+    if(flag===0){
+        await CourseModel.findByIdAndUpdate(cid.cid,{hasPromo:false})
+    }
+   
+}
 
 
 module.exports ={
@@ -178,6 +209,8 @@ module.exports ={
     AddTrainee,
     InstCreateCourse,
     InstGetCourses,
-    rateCourse
+    rateCourse,
+    setPromotion,
+    checkPromotion
 
 }

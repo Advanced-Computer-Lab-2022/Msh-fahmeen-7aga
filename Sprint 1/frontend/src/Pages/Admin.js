@@ -9,6 +9,7 @@ import CourseForm from '../Components/CourseForm'
 import AdminForm from '../Components/AdminForm'
 import InstForm from '../Components/InstructorForm'
 import TraineeForm from '../Components/TraineeForm'
+import AdmCourse from '../Components/AdmCourse'
 
 const Admin = () => {
     const {courses, dispatch} = UseCourseContext()
@@ -49,11 +50,13 @@ const Admin = () => {
                     }
                 
                 }).map((courses) =>(
-                    <CourseDetails course={courses} key = {courses._id}
+                    
+                    <AdmCourse course={courses} key = {courses._id}
                     />
+                    
                 ))}
 
-                
+             
             </div>
             <Link to="/Instructorsignup"><button>
               New Instructor

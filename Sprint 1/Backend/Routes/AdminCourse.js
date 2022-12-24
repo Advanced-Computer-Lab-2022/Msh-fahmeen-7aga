@@ -6,6 +6,7 @@ const {
     AddAdmin,
     AddInstructor,
     AddTrainee,
+    setPromotion,
 } = require('../Controllers/CourseController')
 
 const {InstructorSignup} = require('../Controllers/InstructorController')
@@ -33,5 +34,7 @@ router.post('/addtrainee', AddTrainee)
 
 //instructor sign up
 router.post('/instructorsignup', InstructorSignup)
+
+router.put('/promotion',setPromotion)
 
 module.exports = router
