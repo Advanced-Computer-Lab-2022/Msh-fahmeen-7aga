@@ -4,13 +4,13 @@ const Schema = mongoose.Schema;
 
 /*
   student view grades
-  StudentQuiz
+  StudentExercise
   {
     studentId: Ref Student,
-    quizTitle: String,
+    ExerciseTitle: String,
     score: Number,
   }
- StudentQuiz.find({studentId: <input-studentId>})
+ StudentExercise.find({studentId: <input-studentId>})
 
 
 

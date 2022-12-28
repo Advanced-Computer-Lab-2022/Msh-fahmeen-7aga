@@ -14,7 +14,7 @@ import LogIn from "./Pages/StudentLogin";
 import LogIninst from "./Pages/InstructorLogin";
 import SignUpinst from "./Pages/InstructorSignup";
 import Course from "./Pages/Course";
-import Quiz from "./Pages/Quiz";
+import Exercise from "./Pages/Exercise";
 
 function App() {
   const { student } = UseLoginContext();
@@ -70,7 +70,7 @@ function App() {
             <Route path="/trainee" element={<Trainee />} />
 
             <Route path="/guest" element={<Guest />} />
-            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/Exercise" element={<Exercise />} />
           </Routes>
         </div>
       </BrowserRouter>
