@@ -27,7 +27,7 @@ const StudentSchema = new Schema({
     Password: {
         type: String,
         required: true
-    },
+    }
 }, {timestamps: true})
 
 //Signup
