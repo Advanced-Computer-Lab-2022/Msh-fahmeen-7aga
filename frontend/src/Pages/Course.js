@@ -1,9 +1,9 @@
+// import { useSearchParams } from "react-router-dom";
 import React from "react";
-import{useEffect, useState} from 'react'
+import{useEffect} from 'react'
 import { UseCourseContext } from '../Hooks/UseCourseContext'
 import {UseLoginContext} from '../Hooks/UseLoginContext'
 import CourseDetails from "../Components/CourseDetails";
-import { useSearchParams } from "react-router-dom";
 
 
 const Course=()=>{

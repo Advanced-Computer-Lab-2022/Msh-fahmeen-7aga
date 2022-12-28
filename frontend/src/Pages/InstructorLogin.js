@@ -2,8 +2,8 @@ import {useState} from 'react'
 import { UseInstructorLogin } from '../Hooks/UseLoginInst'
 
 const LogIninst = () => {
-    const [FirstName, setFirstName] = useState('')
-    const [Lastname, setLastName] = useState('')
+    // const [FirstName, setFirstName] = useState('')
+    // const [Lastname, setLastName] = useState('')
     const [Email, setEmail] = useState('')
     const [Password, setPassword] = useState('')
     const {login, error, isLoading} = UseInstructorLogin()

@@ -4,10 +4,10 @@ import {Link } from "react-router-dom";
 
 
 //Components
+// import InstForm from '../Components/InstructorForm'
 import CourseDetails from '../Components/CourseDetails'
 import CourseForm from '../Components/CourseForm'
 import AdminForm from '../Components/AdminForm'
-import InstForm from '../Components/InstructorForm'
 import TraineeForm from '../Components/TraineeForm'
 
 const Admin = () => {
