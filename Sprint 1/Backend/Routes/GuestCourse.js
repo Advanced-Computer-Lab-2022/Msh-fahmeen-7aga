@@ -417,6 +417,7 @@ router.put('/checkPromotion',checkPromotion) //checking promos
     }
   });
   
+  
   router.post('/avg-rating', async (req, res) => {
     try {
       // find the course in the database
