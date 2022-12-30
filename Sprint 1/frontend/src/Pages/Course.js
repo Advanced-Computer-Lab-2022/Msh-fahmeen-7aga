@@ -21,11 +21,6 @@ const Course=()=>{
             headers: {'Authorization': `Bearer ${student.token}`},
           })
           const json = await response.json()
-<<<<<<< Updated upstream
-          
-=======
-          console.log(json.totalRating)
->>>>>>> Stashed changes
     
           if (response.ok) {
             dispatch({type: 'SET_COURSE', payload: json})

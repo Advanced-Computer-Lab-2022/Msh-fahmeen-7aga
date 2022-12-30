@@ -1,4 +1,4 @@
-import{useEffect, useState} from 'react'
+import{useEffect, useState} from 'react' 
 import { UseCourseContext } from '../Hooks/UseCourseContext'
 import {UseLoginContextInst} from '../Hooks/UseLoginContextInst'
 import { UseLogoutinst } from '../Hooks/UseLogoutInst'
@@ -17,6 +17,7 @@ import TraineeForm from '../Components/TraineeForm'
 import PriceFilter from "../Components/PriceFilter";
 import CourseFormins from '../Components/INScourseform'
 import InsCourse from '../Components/InsCourse'
+
 
 const Instructor = () => {
     const {courses, dispatch} = UseCourseContext()

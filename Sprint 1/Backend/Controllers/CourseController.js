@@ -5,39 +5,15 @@ const trainee = require('../Models/TraineeModel')
 const instcourse = require('../Models/InstCourses')
 const student = require('../Models/Studentmodel')
 
+
 const mongoose = require('mongoose')
 const CourseModel = require('../Models/CourseModel')
-<<<<<<< Updated upstream
-const Studentmodel = require('../Models/Studentmodel')
-=======
 
 
-const multer = require('multer');
-
-const upload = multer({
-  dest: 'upload/',
-  limits: {
-    fileSize: 1000000, // 1MB
-  },
-  fileFilter: (req, file, cb) => {
-    if (file.mimetype === 'application/pdf') {
-      cb(null, true);
-    } else {
-      cb(null, false);
-    }
-  },
-  storage: multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, 'upload/');
-    },
-    filename: (req, file, cb) => {
-      cb(null, `${file.fieldname}-${Date.now()}.${file.mimetype.split('/')[1]}`);
-    },
-  }),
-});
 
 
->>>>>>> Stashed changes
+
+
 
 //Get all courses
 
@@ -48,7 +24,7 @@ const GetCourses = async (req, res) => {
 }
 
 const InstGetCourses = async (req, res) => {
-    const InstCourse = await course.find({}).sort({createdAt: -1})
+    const InstCourse = await instcourse.find({}).sort({createdAt: -1})
 
     res.status(200).json(InstCourse)
 }
@@ -131,13 +107,121 @@ const AddTrainee = async (req, res) => {
     }
 }
 
-const rateCourse = async (req,res)=>{
+
+
+
+
+const registerForCourse = async (studentEmail, courseId) => {
+  const Student = await student.findOne({ Email: studentEmail });
+
+  const Course = await course.findById(courseId);
+
+  if (!Student) {
+    return { error: 'Student does not exist' };
+  }
+
+  if (!Course) {
+    return { error: 'Course does not exist' };
+  }
+
+
+  if (Student.registeredCourses.includes(Course._id)) {
+    return { error: 'Student is already registered for this course' };
+  }
+
+
+  Student.registeredCourses.push(Course._id);
+  await Student.save();
+
+  Course.registeredStudents.push(Student._id);
+  await Course.save();
+
+  return { message: 'Student registered for course successfully' };
+};
+
+
+
+
+
+  const downloadCoursePDF = async (req, res) => {
+    const { id } = req.params;
+  
+    const course = await CourseModel.findById(id);
+  
+    if (!course) {
+      return res.status(404).send('Course not found');
+    }
+  
+    if (!course.pdf) {
+      return res.status(404).send('Course has no PDF file');
+    }
+  
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename="' + course.pdf.name + '"');
+  
+    res.send(course.pdf.file);
+  };
+
+  async function getBalance(req, res)  {
+    try {
+      const studentId = req.get('studentId');
+  
+      const Student = await student.findById(studentId);
+  
+      if (!Student) {
+        return res.status(304).json({ success: false, error: 'Student not found' });
+      }
+  
+      res.json({ success: true, balance: Student.walletBalance });
+    } catch (error) {
+      res.status(400).json({ success: false, error: error.message });
+    }
+  }
+  async function updateBalance(req, res) {
+    try {
+      const studentId = req.get('studentId');
+      const { action, amount } = req.body;
+
+      if (!['deposit', 'purchase'].includes(action)) {
+        return res.status(400).json({ success: false, error: 'Invalid action' });
+      }
+      if (typeof amount !== 'number' || amount <= 0) {
+        return res.status(400).json({ success: false, error: 'Invalid amount' });
+      }
+  
+      let Student;
+  
+      if (action === 'deposit') {
+        Student = await student.findByIdAndUpdate(
+          studentId,
+          { $inc: { walletBalance: amount } },
+          { new: true }
+        );
+      } else if (action === 'purchase') {
+        Student = await student.findById(studentId);
+        if (Student.walletBalance < amount) {
+          return res.status(400).json({ success: false, error: 'Insufficient funds' });
+        }
+  
+        Student = await student.findByIdAndUpdate(
+          studentId,
+          { $inc: { walletBalance: -amount } },
+          { new: true }
+        );
+      }
+  
+      res.json({ success: true, student });
+    } catch (error) {
+      res.status(400).json({ success: false, error: error.message });
+    }
+  };
+  const rateCourse = async (req,res)=>{
     try{
-<<<<<<< Updated upstream
+        
      var value;
      var total;
     const rating = req.body
-
+   
    
           var tr = {score:rating.newRating,postedBy: rating.email} // POSSIBLE SOL
       
@@ -154,18 +238,18 @@ const rateCourse = async (req,res)=>{
         }
         else{
             
-            console.log('u done it m8')
+            console.log('Already rated')
 
         }
         //console.log(doc)
     })
 
 
- 
+
 
     const cid = rating.cid
-
-
+   
+ 
  CourseModel.aggregate([
      {$match:{_id:mongoose.Types.ObjectId(cid)}},
      {$addFields: { totalRating: {$sum:'$totalRating.score'}}}
@@ -186,113 +270,67 @@ const rateCourse = async (req,res)=>{
     console.log(value,total)
     value = total/value
     console.log(value,total)
-    CourseModel.findByIdAndUpdate(cid,{Rating:value}).then(function(doc){console.log(doc)})
-   })
+    CourseModel.findByIdAndUpdate(cid,{$push:{Rating:value}}).then(function(doc){console.log(doc)})
+    })
 }) 
-=======
-        //const{_id} = req.Student
-       // console.log(_id)
-    console.log('hereyo')
-    const rating = req.body
-    CourseModel.findOne({title:'ddd'}).then(function(doc){console.log(doc)})
-  
-    // console.log(rating.cid)
-       
-     await CourseModel.findByIdAndUpdate(rating.cid,{totalRating:rating.newRating})
-       CourseModel.findOne({title:'ddd'}).then(function(doc){console.log(doc)})
-   // let alreadyRated= CourseModel.Rating.find((studId)=> studId.postedBy.toString()===_id.toString());
-    // if(alreadyRated){
-    //     console.log('smth')
-    // }
-    // else{
-    //     console.log('ojkahuishi')
-    //     course.Rating
-    // }
+
+
+
+
 }
     catch(error){
         res.status(400).json({Error: error.message})
     }
 }
 
-const uploadPDF = async (req,res)=>{
-    const pdf = req.file;
-    console.log(pdf);
-  
-    // Update the course document in the database
-    try {
-      const course = await CourseModel.findByIdAndUpdate(
-        req.params.id,
-        {
-          $push: {
-            exercises: {
-              filename: pdf.originalname,
-              path: pdf.path,
-              uploadDate: Date.now()
-            }
-          }
-        },
-        { new: true }
-      );
-  
-      res.status(200).json({ message: 'PDF file added successfully', course });
-    } catch (error) {
-      res.status(400).json({ error: error.message });
-    }
-  };
+const setPromotion = async (req,res) =>{
+     const prom = req.body
+     const newPrice =  prom.oldPrice - (prom.discount/100) * prom.oldPrice 
+     var pr = {oldPrice:prom.oldPrice, discount:prom.discount, until:prom.until}
+     await CourseModel.findByIdAndUpdate(prom.cid,{Promotion:pr})
+     await CourseModel.findByIdAndUpdate(prom.cid,{hasPromo:true})
+     await CourseModel.findByIdAndUpdate(prom.cid,{price:newPrice.toFixed(2)})
+     CourseModel.findById(prom.cid).then(function(doc){console.log(doc)})
+    
+     
 
-  const Coursetitle = async (req, res) => {
-    try {
-      const courses = await Course.find({}, 'title');
-      res.status(200).send(courses);
-    } catch (error) {
-      res.status(500).send(error);
-    }
-  };
+}
 
-  const registerForCourse = async (studentEmail, courseId) => {
-    // Find the student by email
-    const Student = await student.findOne({ Email: studentEmail });
-  
-    // Find the course by its ID
-    const Course = await course.findById(courseId);
-  
-    // Check if the student or course does not exist
-    if (!Student) {
-      return { error: 'Student does not exist' };
+const checkPromotion = async (req,res)=>{
+    const cid = req.body
+    var flag;
+    const currentTime = new Date().toDateString()
+    
+    await CourseModel.findById(cid.cid).then(function(doc)
+    {if((doc.Promotion.until).toDateString()<currentTime){
+        flag = 0;
+     CourseModel.findByIdAndUpdate(cid.cid,{price:doc.Promotion.oldPrice})
+    .then(CourseModel.findByIdAndUpdate(cid.cid,{hasPromo:false})).then(function(doc){console.log(doc)})
+    }})
+    if(flag===0){
+        await CourseModel.findByIdAndUpdate(cid.cid,{hasPromo:false})
     }
-  
-    if (!Course) {
-      return { error: 'Course does not exist' };
-    }
-  
-    // Check if the student is already registered for the course
-    if (Student.registeredCourses.includes(Course._id)) {
-      return { error: 'Student is already registered for this course' };
-    }
-  
-    // Add the course to the student's list of registered courses
-    Student.registeredCourses.push(Course._id);
-    await Student.save();
-  
-    // Add the student to the course's list of registered students
-    Course.registeredStudents.push(Student._id);
-    await Course.save();
-  
-    return { message: 'Student registered for course successfully' };
-  };
+   
+}
 
-  const registeredCourses = async (req, res) => {
-    // Find the student by their email
-    const { email } = req.query;
-    const Student = await student.findOne({ Email: email });
-    if (!Student) {
-      return res.status(400).json({ error: 'Student does not exist' });
-    }
+
+
   
-    // Find all courses that the student is registered for
-    const RegisteredCourses = await course.find({ _id: { $in: Student.registeredCourses } });
-    res.status(200).json(RegisteredCourses);
-  };
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  
+
+
+
   
   
   
@@ -302,19 +340,10 @@ const uploadPDF = async (req,res)=>{
  
 
   
->>>>>>> Stashed changes
 
 
 
 
-<<<<<<< Updated upstream
-}
-    catch(error){
-        res.status(400).json({Error: error.message})
-    }
-}
-=======
->>>>>>> Stashed changes
 
 
 
@@ -327,17 +356,12 @@ module.exports ={
     AddTrainee,
     InstCreateCourse,
     InstGetCourses,
-<<<<<<< Updated upstream
-    rateCourse
-
-}
-=======
-    rateCourse,
-    uploadPDF,
-    Coursetitle,
-    upload,
     registerForCourse,
-    registeredCourses
+    downloadCoursePDF,
+    getBalance,
+    updateBalance,
+    rateCourse,
+    setPromotion,
+    checkPromotion
 }
 
->>>>>>> Stashed changes

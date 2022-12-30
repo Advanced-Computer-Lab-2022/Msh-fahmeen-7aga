@@ -22,9 +22,6 @@ router.get('/:id', GetCourse)
 
 router.get('/viewinstructors', GetInstructor)
 
-// router.put('/rating', RequireAuth,rateCourse) //route to rate
-
-
 
   
 

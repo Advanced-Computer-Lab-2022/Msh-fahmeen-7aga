@@ -21,7 +21,7 @@ b. Teacher will be responsible for preparing and delivering course materials in 
 c. Teacher will be available to answer student questions and provide additional support as needed.
 
 Compensation
-a. Teacher will be compensated at the rate of $50,000 a year for the educational services provided under this Agreement.
+a. Teacher will be compensated at the rate of 50% of a course's price for the educational services provided under this Agreement.
 
 b. Payment for services will be made on a Monthly basis.
 

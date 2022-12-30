@@ -4,11 +4,13 @@ import { UseLoginContext } from '../Hooks/UseLoginContext';
 
 //Components
 import CourseDetails from '../Components/CourseDetails';
+
 import CourseForm from '../Components/CourseForm';
 import AdminForm from '../Components/AdminForm';
 import InstForm from '../Components/InstructorForm';
 import TraineeForm from '../Components/TraineeForm';
 import Search from '../Components/Search';
+import StudentBalance from '../Components/Wallet';
 
 const Student = () => {
 const { courses, dispatch } = UseCourseContext();
@@ -50,6 +52,9 @@ const [localPrices, setLocalPrices] = useState({});
                 placeholder='search'
                 name='s'/>
                 <button type='submit'>Search</button>
+
+
+                <StudentBalance />
 
 
 

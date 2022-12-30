@@ -9,7 +9,7 @@ import CourseForm from '../Components/CourseForm'
 import AdminForm from '../Components/AdminForm'
 import InstForm from '../Components/InstructorForm'
 import TraineeForm from '../Components/TraineeForm'
-
+import AdmCourse from '../Components/AdmCourse'
 const Admin = () => {
     const {courses, dispatch} = UseCourseContext()
     const[searchterm,setsearchterm] =useState("")
@@ -49,7 +49,7 @@ const Admin = () => {
                     }
                 
                 }).map((courses) =>(
-                    <CourseDetails course={courses} key = {courses._id}
+                    <AdmCourse course={courses} key = {courses._id}
                     />
                 ))}
 
@@ -59,9 +59,22 @@ const Admin = () => {
               New Instructor
             </button>
             </Link>
+
+            <Link to="/Problems"><button>
+              View Problems
+            </button>
+
+            <Link to="/solvedproblems"><button>
+              Resolved Problems
+            </button>
+            </Link>
+            </Link>
+            <Link to="/traineesignup"><button>
+              New Trainee
+            </button>
+            </Link>
             <CourseForm />
             <AdminForm />
-            <TraineeForm />
         </div>
     )
 }

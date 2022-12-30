@@ -5,7 +5,7 @@ const InstCourseDetails = ({ instcourse }) => {
             <p><strong>Subtitle: </strong> {instcourse.subtitle}</p>
             <p><strong>Summary: </strong> {instcourse.summary}</p>
             <p><strong>Price: </strong> {instcourse.price}</p>
-            <p><strong>Rating:</strong>{instcourse.Rating}</p>
+            <p><strong>Rating:</strong></p>
         </div>
     )
 }

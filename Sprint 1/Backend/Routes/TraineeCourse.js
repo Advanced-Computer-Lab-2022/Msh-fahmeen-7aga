@@ -3,7 +3,8 @@ const {
     GetCourse,
     GetCourses,
     InstCreateCourse,
-    GetInstructor
+    GetInstructor,
+    getBalance 
 } = require('../Controllers/CourseController')
 
 const router = express.Router()
@@ -17,6 +18,8 @@ router.get('/viewcourses', GetCourses)
 router.get('/:id', GetCourse)
 
 router.post('/instaddcourse', InstCreateCourse)
+
+router.get('//get-balance', getBalance);
 
 
 

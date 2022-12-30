@@ -1,35 +1,31 @@
-import { UseCourseContext } from '../Hooks/UseCourseContext'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import { UseLoginContext } from '../Hooks/UseLoginContext'
-import Rating from '@mui/material/Rating'
-import React, { useEffect, useState } from "react";
-import ReactStars from "react-rating-stars-component";
 
-const RegisteredCourses = () => {
-const { student } = UseLoginContext();
-const [registeredCourses, setRegisteredCourses] = useState([]);
+function StudentCourses() {
+  const [courses, setCourses] = useState([])
+  const { student } = UseLoginContext();
 
-useEffect(() => {
-const fetchRegisteredCourses = async () => {
-const studentId = student._id;
-const result = await fetch('http://localhost:4000/guest/registered-courses?studentId=${studentId}');
-const data = await result.json();
-setRegisteredCourses(data);
-};
-fetchRegisteredCourses();
-}, []);
+  useEffect(() => {
+    
+    async function fetchData() {
+      const studentId = '63adb74fa2e3d13dec976a19'
+      const response = await axios.post('http://localhost:4000/guest/fetch-student-courses', { studentId })
+      setCourses(response.data)
+    }
+    fetchData()
+  }, [])
 
-return (
-<div className="registered-courses">
-{registeredCourses.map((course) => (
-<div className="registered-course-details" key={course._id}>
-<h4>{course.title}</h4>
-<p><strong>Subtitle: </strong> {course.subtitle}</p>
-<p><strong>Summary: </strong> {course.summary}</p>
-<p><strong>Price: </strong> {course.price}</p>
-</div>
-))}
-</div>
-);
-};
+  return (
+    <div>
+      <h2>Your courses:</h2>
+      <ul>
+        {courses.map(course => (
+          <li key={course._id}>{course.title}</li>
+        ))}
+      </ul>
+    </div>
+  )
+}
 
-export default RegisteredCourses
+export default StudentCourses
