@@ -364,6 +364,37 @@ router.put('/checkPromotion',checkPromotion) //checking promos
       res.status(500).send({ error: 'Error fetching resolved problems' });
     }
   });
+
+
+  router.post('/popularcourses', async (req, res) => {
+    try {
+      // Populate the `registeredStudents` array for each course
+      const courses = await Course.find().populate('registeredStudents');
+  
+      // Map the courses array to an array of objects with course details and the number of students
+      const coursesWithStudentCount = courses.map(course => {
+        return {
+          title: course.title,
+          subtitle: course.subtitle,
+          price: course.price,
+          summary: course.summary,
+          TA: course.TA,
+          Subject: course.Subject,
+          Rating: course.Rating,
+          totalRating: course.totalRating,
+          Promotion: course.Promotion,
+          hasPromo: course.hasPromo,
+          pdfs: course.pdfs,
+          studentCount: course.registeredStudents.length
+        }
+      });
+  
+      res.json(coursesWithStudentCount);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  });
+  
   
   
   

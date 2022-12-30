@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PopularCourses from "../Components/Mostpopular";
 
 const HomePage = () => {
   return (
@@ -25,6 +26,10 @@ const HomePage = () => {
       <Link to="/Quiz">
         <button>take quiz</button>
       </Link>
+
+      <PopularCourses />
+
+
     </div>
   );
 };
