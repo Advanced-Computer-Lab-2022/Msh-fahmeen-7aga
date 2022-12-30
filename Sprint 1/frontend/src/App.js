@@ -15,7 +15,7 @@ import LogIninst from "./Pages/InstructorLogin";
 import SignUpinst from "./Pages/InstructorSignup";
 import Course from "./Pages/Course";
 import Quiz from "./Pages/Quiz";
-
+import MainNav from "./Components/Navigation/MainNav";
 function App() {
   const { student } = UseLoginContext();
   const { instructor } = UseLoginContextInst();
@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar />
+        <MainNav/>
         <div className="pages">
           <Routes>
             <Route exact path="/" element={<HomePage />} />
