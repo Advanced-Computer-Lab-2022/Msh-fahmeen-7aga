@@ -20,7 +20,7 @@ const SolvedProblem = require('../Models/SolvedProblems')
 const express = require('express')
 const {
     GetCourse,
-    GetCourses, rateCourse,
+    GetCourses,
     registerForCourse,
     downloadCoursePDF,checkPromotion
 } = require('../Controllers/CourseController')
@@ -51,7 +51,7 @@ router.get('/:id', GetCourse)
 
 
 
-router.put('/rating', rateCourse) //route to rate
+
 
 router.put('/checkPromotion',checkPromotion) //checking promos
 
@@ -378,10 +378,7 @@ router.put('/checkPromotion',checkPromotion) //checking promos
           subtitle: course.subtitle,
           price: course.price,
           summary: course.summary,
-          TA: course.TA,
           Subject: course.Subject,
-          Rating: course.Rating,
-          totalRating: course.totalRating,
           Promotion: course.Promotion,
           hasPromo: course.hasPromo,
           pdfs: course.pdfs,
@@ -394,6 +391,46 @@ router.put('/checkPromotion',checkPromotion) //checking promos
       res.status(500).json({ message: err.message });
     }
   });
+
+
+
+  router.post('/rate', async (req, res) => {
+    try {
+      // find the course in the database
+      const course = await Course.findById(req.body.courseId);
+      if (!course) {
+        return res.status(404).send({ message: 'Course not found' });
+      }
+      // add the new rating to the ratings array
+      course.ratings.push({
+        rating: req.body.rating,
+        userId: req.body.userId,
+      });
+      // calculate the new average rating
+      const sum = course.ratings.reduce((acc, r) => acc + r.rating, 0);
+      course.avgRating = sum / course.ratings.length;
+      // save the updated course document
+      await course.save();
+      res.send({ message: 'Course rated successfully' });
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
+  });
+  
+  router.post('/avg-rating', async (req, res) => {
+    try {
+      // find the course in the database
+      const course = await Course.findById(req.body.courseId);
+      if (!course) {
+        return res.status(404).send({ message: 'Course not found' });
+      }
+      // return the average rating
+      res.send({ avgRating: course.avgRating });
+    } catch (error) {
+      res.status(500).send({ message: error.message });
+    }
+  });
+  
   
   
   

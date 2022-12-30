@@ -50,10 +50,10 @@ const GetCourse = async (req, res) => {
 //Add new course
 
 const CreateCourse = async (req, res) => {
-    const{title, subtitle, price, summary, Subject, TA} = req.body
+    const{title, subtitle, price, summary, Subject} = req.body
     //adds course to db
     try{
-        const Course = await course.create({title, subtitle, price, summary, Subject, TA})
+        const Course = await course.create({title, subtitle, price, summary, Subject})
         res.status(200).json(Course)
     }catch (error){
         res.status(400).json({error: error.message})
@@ -215,73 +215,6 @@ const registerForCourse = async (studentEmail, courseId) => {
       res.status(400).json({ success: false, error: error.message });
     }
   };
-  const rateCourse = async (req,res)=>{
-    try{
-        
-     var value;
-     var total;
-    const rating = req.body
-   
-   
-          var tr = {score:rating.newRating,postedBy: rating.email} // POSSIBLE SOL
-      
-     await CourseModel.find({'totalRating.postedBy':rating.email,_id:rating.cid}).then(function(doc){
-        if(doc.length===0){
-             CourseModel.findByIdAndUpdate(rating.cid,{$push:{totalRating:tr}},function(err,succ){
-                if(err){
-                            console.log(err)
-                        }
-                        else{
-                             console.log(succ)
-                         }
-                       })
-        }
-        else{
-            
-            console.log('Already rated')
-
-        }
-        //console.log(doc)
-    })
-
-
-
-
-    const cid = rating.cid
-   
- 
- CourseModel.aggregate([
-     {$match:{_id:mongoose.Types.ObjectId(cid)}},
-     {$addFields: { totalRating: {$sum:'$totalRating.score'}}}
-    
- ]).exec((err, result) => {
-    if (err) {
-         console.log(err)
-     }
-    
-
-   let total = result[0].totalRating //The sum of all ratings
-   console.log(value,total)
-   CourseModel.aggregate([
-    {$match:{_id:mongoose.Types.ObjectId(cid)}},
-    {$project:{totalRating:{$size:'$totalRating'}}}
-   ]).exec((err,res)=>{
-    let value = res[0].totalRating
-    console.log(value,total)
-    value = total/value
-    console.log(value,total)
-    CourseModel.findByIdAndUpdate(cid,{$push:{Rating:value}}).then(function(doc){console.log(doc)})
-    })
-}) 
-
-
-
-
-}
-    catch(error){
-        res.status(400).json({Error: error.message})
-    }
-}
 
 const setPromotion = async (req,res) =>{
      const prom = req.body
@@ -360,7 +293,6 @@ module.exports ={
     downloadCoursePDF,
     getBalance,
     updateBalance,
-    rateCourse,
     setPromotion,
     checkPromotion
 }

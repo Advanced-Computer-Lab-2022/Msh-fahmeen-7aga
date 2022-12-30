@@ -19,22 +19,10 @@ const courseschema = new Schema({
     type: String,
     required: true
   },
-  TA: {
-    type: String,
-    required: true
-  },
   Subject: {
     type: String,
     required: true
   },
-  Rating: {
-    type: Number,
-    required: true,
-},
-totalRating:[{
-    score: Number,
-    postedBy: String,
-}],
 Promotion:{
     oldPrice: Number,
     discount: Number,
@@ -55,6 +43,14 @@ hasPromo:{
       required: true,
     },
   }],
+  ratings: [{
+    rating: { type: Number },
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+  }],
+  avgRating: {
+    type: Number,
+    default: 0
+  },
 }, { timestamps: true })
 
 module.exports = mongoose.model('Course', courseschema)
