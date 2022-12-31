@@ -140,3 +140,6 @@ div button {
 .my-star:not(.is-active):hover{
   color: #fb8900;
 }
+.header-search{
+  padding-right: 4rem;
+}
