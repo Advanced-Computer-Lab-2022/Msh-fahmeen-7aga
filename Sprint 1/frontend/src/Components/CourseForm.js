@@ -8,12 +8,13 @@ const CourseForm = () => {
     const[price, setPrice] = useState('')
     const[summary, setSummary] = useState('')
     const[Subject, setSubject] = useState('')
+    const [videoId, setVideoId] = useState('');
     const[error, setError] = useState(null)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const course = {title, subtitle, price, summary, Subject}
+        const course = {title, subtitle, price, summary, Subject, videoId }
 
         const response = await fetch('http://localhost:4000/admin/addcourse' , {
             method: 'POST',
@@ -33,6 +34,7 @@ const CourseForm = () => {
             setPrice('')
             setSummary('')
             setSubject('')
+            setVideoId('');
             setError(null)
             console.log('New course added', json)
             dispatch({type: 'CREATE_COURSE', payload: json})
@@ -79,6 +81,13 @@ const CourseForm = () => {
             type="text"
             onChange={(e) => setSubject(e.target.value)}
             value={Subject}
+            />
+
+       <label>Intro Video ID:</label>
+            <input
+            type="text"
+            onChange={(e) => setVideoId(e.target.value)}
+            value={videoId}
             />
 
             <button>Add Course</button>

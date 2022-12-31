@@ -51,6 +51,9 @@ hasPromo:{
     type: Number,
     default: 0
   },
+  videoId: {
+    type: String,
+  }
 }, { timestamps: true })
 
 module.exports = mongoose.model('Course', courseschema)

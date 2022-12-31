@@ -2,6 +2,7 @@ import { UseCourseContext } from '../Hooks/UseCourseContext';
 import { UseLoginContext } from '../Hooks/UseLoginContext';
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
+import YouTube from 'react-youtube';
 
 
 const CourseDetails = ({ course }) => {
@@ -173,6 +174,16 @@ const CourseDetails = ({ course }) => {
     <div>
       <h5>Average Rating: {avgRating}</h5>
     </div>
+
+    {course.videoId && (
+        <YouTube
+          videoId={course.videoId}
+          opts={{
+            height: '390',
+            width: '640',
+          }}
+        />
+      )}
       
       <button onClick={() => setPdfsVisible(!pdfsVisible)}>view course files</button>
       <button onClick={registerForCourse}>Register</button>

@@ -50,15 +50,23 @@ const GetCourse = async (req, res) => {
 //Add new course
 
 const CreateCourse = async (req, res) => {
-    const{title, subtitle, price, summary, Subject} = req.body
-    //adds course to db
-    try{
-        const Course = await course.create({title, subtitle, price, summary, Subject})
-        res.status(200).json(Course)
-    }catch (error){
-        res.status(400).json({error: error.message})
-    }
-}
+  const { title, subtitle, price, summary, Subject, videoId } = req.body;
+  // Adds course to db
+  try {
+    const Course = await course.create({
+      title,
+      subtitle,
+      price,
+      summary,
+      Subject,
+      videoId,
+    });
+    res.status(200).json(Course);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 
 const InstCreateCourse = async (req, res) => {
     const{title, subtitle, price, summary, Subject} = req.body
