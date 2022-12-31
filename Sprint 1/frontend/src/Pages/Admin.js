@@ -9,7 +9,8 @@ import CourseForm from '../Components/CourseForm'
 import AdminForm from '../Components/AdminForm'
 import InstForm from '../Components/InstructorForm'
 import TraineeForm from '../Components/TraineeForm'
-
+import Card from '../Components/Card'
+import '../index.css'
 const Admin = () => {
     const {courses, dispatch} = UseCourseContext()
     const[searchterm,setsearchterm] =useState("")
@@ -27,7 +28,7 @@ const Admin = () => {
     }, [dispatch])
     
     return(
-        <div className="admin">
+        <div className="admin2">
             <label htmlFor="header-search">
                 <span className='visually-hidden'>Search For Courses</span></label>
                 <input type="text"
@@ -35,10 +36,12 @@ const Admin = () => {
                 id="header-search"
                 placeholder='search'
                 name='s'/>
-                <button type='submit'>Search</button>
+                
 
             <div className='Courses'>
+                
             <h3>All courses</h3>
+        
             {courses && courses.filter((course)=>{
                     if(searchterm==""){
                         return course
@@ -55,6 +58,7 @@ const Admin = () => {
 
                 
             </div>
+            <h3>Add a new Instructor</h3>
             <Link to="/Instructorsignup"><button>
               New Instructor
             </button>

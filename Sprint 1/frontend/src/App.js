@@ -24,6 +24,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <MainNav/>
+        <main>
         <div className="pages">
           <Routes>
             <Route exact path="/" element={<HomePage />} />
@@ -73,6 +74,7 @@ function App() {
             <Route path="/quiz" element={<Quiz />} />
           </Routes>
         </div>
+        </main>
       </BrowserRouter>
     </div>
   );

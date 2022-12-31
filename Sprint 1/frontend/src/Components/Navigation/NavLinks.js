@@ -27,7 +27,7 @@ const NavLinks = props=>{
         {student &&
             
         <li>
-            <NavLink to="/student">My Courses</NavLink>
+            <NavLink to={`/${props.id}/student`}>My Courses</NavLink>
         </li>}
     {student &&
         <li>
