@@ -2,7 +2,7 @@ import { UseCourseContext } from '../Hooks/UseCourseContext'
 import {UseLoginContext} from '../Hooks/UseLoginContext'
 import React, { useState } from "react";
 
-
+import Card from './Card'
 
 
  
@@ -36,6 +36,7 @@ const promHandler =async()=>{
 
     return(
         <div className="course-details">
+            <Card className='card'>
             <h4>{course.title}</h4>
             <p><strong>Subtitle: </strong> {course.subtitle}</p>
             <p><strong>Summary: </strong> {course.summary}</p>
@@ -52,7 +53,7 @@ const promHandler =async()=>{
 
             <button onClick={promHandler}>set</button>
             
-           
+            </Card>
         
            
         </div>

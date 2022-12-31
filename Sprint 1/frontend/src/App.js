@@ -28,7 +28,7 @@ import Notifications from "./Components/Notifications";
 import TermsAndConditions from "./Pages/Terms";
 import ProblemList from "./Components/Problems";
 import ResolvedProblemList from "./Components/SolvedProblems";
-
+import MainNav from './Components/Navigation/MainNav'
 import PasswordResetEmailSent from "./Components/Passreset";
 
 
@@ -40,7 +40,8 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar />
+        <MainNav/>
+        <main>
         <div className="pages">
           <Routes>
             <Route exact path="/" element={<HomePage />} />
@@ -121,6 +122,7 @@ function App() {
             <Route exact path="/Passwordchange" element={<Passchange />} />
           </Routes>
         </div>
+        </main>
       </BrowserRouter>
     </div>
   );
