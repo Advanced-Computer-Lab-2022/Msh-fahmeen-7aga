@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 //Components
-import CourseDetails from "../Components/CourseDetails";
+import CourseDetails from "../Components/Coursedetailsadmin";
 
 const Guest = () => {
   const [courses, setCourses] = useState(null);

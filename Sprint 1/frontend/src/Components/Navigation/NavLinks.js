@@ -34,8 +34,13 @@ const NavLinks = props=>{
         {student &&
             
         <li>
-            <NavLink to={'/student'}>My Courses</NavLink>
+            <NavLink to={'/student'}>All Courses</NavLink>
         </li>}
+        {student &&
+        <li>
+            <NavLink to ={'/enrolledcourses'}>My Courses</NavLink>
+        </li>
+        }
     {student &&
         <li>
             <button onClick={handleClick}>LogOut</button>
