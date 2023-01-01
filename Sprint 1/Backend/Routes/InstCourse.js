@@ -1,9 +1,13 @@
+
+
+
 const express = require('express')
 const {
     CreateCourse,
     GetCourse,
     GetCourses,
-    InstGetCourses
+    InstGetCourses,
+    uploadPDF
 } = require('../Controllers/CourseController')
 
 
@@ -29,6 +33,8 @@ router.get('/:id', GetCourse)
 router.post('/addcourse', CreateCourse)
 
 //Post new course for you (postman)
+
+
 
 
 

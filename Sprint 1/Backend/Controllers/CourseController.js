@@ -3,10 +3,17 @@ const admin = require('../Models/AdminModel')
 const instructor = require('../Models/InstructorModel')
 const trainee = require('../Models/TraineeModel')
 const instcourse = require('../Models/InstCourses')
+const student = require('../Models/Studentmodel')
+
 
 const mongoose = require('mongoose')
 const CourseModel = require('../Models/CourseModel')
-const Studentmodel = require('../Models/Studentmodel')
+
+
+
+
+
+
 
 //Get all courses
 
@@ -42,16 +49,30 @@ const GetCourse = async (req, res) => {
 
 //Add new course
 
+
+
 const CreateCourse = async (req, res) => {
-    const{title, subtitle, price, summary, Subject, TA} = req.body
-    //adds course to db
-    try{
-        const Course = await course.create({title, subtitle, price, summary, Subject, TA})
-        res.status(200).json(Course)
-    }catch (error){
-        res.status(400).json({error: error.message})
-    }
-}
+  // retrieve fields from request body
+  const { title, subtitle, price, summary, Subject, videoId, pdfs, lessonVideoIds: [...lessonVideoIds] } = req.body;
+
+  try {
+
+    const Course = await course.create({
+      title,
+      subtitle,
+      price,
+      summary,
+      Subject,
+      videoId,
+      pdfs,
+      lessonVideoIds,
+    });
+    res.status(200).json(Course);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 
 const InstCreateCourse = async (req, res) => {
     const{title, subtitle, price, summary, Subject} = req.body
@@ -100,93 +121,145 @@ const AddTrainee = async (req, res) => {
     }
 }
 
-const rateCourse = async (req,res)=>{
-    try{
-     var value;
-     var total;
-    const rating = req.body
-
-   
-          var tr = {score:rating.newRating,postedBy: rating.email} // POSSIBLE SOL
-      
-     await CourseModel.find({'totalRating.postedBy':rating.email,_id:rating.cid}).then(function(doc){
-        if(doc.length===0){
-             CourseModel.findByIdAndUpdate(rating.cid,{$push:{totalRating:tr}},function(err,succ){
-                if(err){
-                            console.log(err)
-                        }
-                        else{
-                             console.log(succ)
-                         }
-                       })
-        }
-        else{
-            
-            console.log('u done it m8')
-
-        }
-        //console.log(doc)
-    })
-
-
-// CourseModel.aggregate([
-//     {$match:{_id:mongoose.Types.ObjectId(cid)}},
-//     {$addFields: { totalRating: {$sum:'$totalRating.score'}}}
-    
-// ]).exec((err, result) => {
-//     if (err) {
-//         console.log(err)
-//     }
-
-//     let total = result[0].totalRating //The sum of all ratings
-    
-// }) 
-
-    const cid = rating.cid
-// CourseModel.aggregate([
-//     {$match:{_id:mongoose.Types.ObjectId(cid)}},
-//     {$project:{totalRating:{$size:'$totalRating'}}}
-// ]).exec((err, result) => {
-//     if (err) {
-//         console.log(err)
-//     }
-   
-//     let value = result[0].totalRating //total number of ratings
-    
-// })
-
- CourseModel.aggregate([
-     {$match:{_id:mongoose.Types.ObjectId(cid)}},
-     {$addFields: { totalRating: {$sum:'$totalRating.score'}}}
-    
- ]).exec((err, result) => {
-    if (err) {
-         console.log(err)
-     }
-    
-
-   let total = result[0].totalRating //The sum of all ratings
-   console.log(value,total)
-   CourseModel.aggregate([
-    {$match:{_id:mongoose.Types.ObjectId(cid)}},
-    {$project:{totalRating:{$size:'$totalRating'}}}
-   ]).exec((err,res)=>{
-    let value = res[0].totalRating
-    console.log(value,total)
-    value = total/value
-    console.log(value,total)
-    CourseModel.findByIdAndUpdate(cid,{Rating:value}).then(function(doc){console.log(doc)})
-   })
-}) 
 
 
 
 
-}
-    catch(error){
-        res.status(400).json({Error: error.message})
+const registerForCourse = async (studentEmail, courseId) => {
+  const Student = await student.findOne({ Email: studentEmail });
+
+  const Course = await course.findById(courseId);
+
+  if (!Student) {
+    return { error: 'Student does not exist' };
+  }
+
+  if (!Course) {
+    return { error: 'Course does not exist' };
+  }
+
+
+  if (Student.registeredCourses.includes(Course._id)) {
+    return { error: 'Student is already registered for this course' };
+  }
+
+
+  Student.registeredCourses.push(Course._id);
+  await Student.save();
+
+  Course.registeredStudents.push(Student._id);
+  await Course.save();
+
+  return { message: 'Student registered for course successfully' };
+};
+
+
+
+
+
+  const downloadCoursePDF = async (req, res) => {
+    const { id } = req.params;
+  
+    const course = await CourseModel.findById(id);
+  
+    if (!course) {
+      return res.status(404).send('Course not found');
     }
-}
+  
+    if (!course.pdf) {
+      return res.status(404).send('Course has no PDF file');
+    }
+  
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename="' + course.pdf.name + '"');
+  
+    res.send(course.pdf.file);
+  };
+
+  async function getBalance(req, res)  {
+    try {
+      const studentId = req.get('studentId');
+  
+      const Student = await student.findById(studentId);
+  
+      if (!Student) {
+        return res.status(304).json({ success: false, error: 'Student not found' });
+      }
+  
+      res.json({ success: true, balance: Student.walletBalance });
+    } catch (error) {
+      res.status(400).json({ success: false, error: error.message });
+    }
+  }
+  async function updateBalance(req, res) {
+    try {
+      const studentId = req.get('studentId');
+      const { action, amount } = req.body;
+
+      if (!['deposit', 'purchase'].includes(action)) {
+        return res.status(400).json({ success: false, error: 'Invalid action' });
+      }
+      if (typeof amount !== 'number' || amount <= 0) {
+        return res.status(400).json({ success: false, error: 'Invalid amount' });
+      }
+  
+      let Student;
+  
+      if (action === 'deposit') {
+        Student = await student.findByIdAndUpdate(
+          studentId,
+          { $inc: { walletBalance: amount } },
+          { new: true }
+        );
+      } else if (action === 'purchase') {
+        Student = await student.findById(studentId);
+        if (Student.walletBalance < amount) {
+          return res.status(400).json({ success: false, error: 'Insufficient funds' });
+        }
+  
+        Student = await student.findByIdAndUpdate(
+          studentId,
+          { $inc: { walletBalance: -amount } },
+          { new: true }
+        );
+      }
+  
+      res.json({ success: true, student });
+    } catch (error) {
+      res.status(400).json({ success: false, error: error.message });
+    }
+  };
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  
+
+
+
+  
+  
+  
+
+
+  
+ 
+
+  
+
+
+
+
 
 
 
@@ -199,6 +272,9 @@ module.exports ={
     AddTrainee,
     InstCreateCourse,
     InstGetCourses,
-    rateCourse
-
+    registerForCourse,
+    downloadCoursePDF,
+    getBalance,
+    updateBalance,
 }
+

@@ -27,8 +27,19 @@ const StudentSchema = new Schema({
     Password: {
         type: String,
         required: true
-    }
-}, {timestamps: true})
+    },
+    walletBalance: {
+        type: Number,
+        default: 0,
+      },
+    registeredCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }],
+}, {timestamps: true},
+
+
+
+)
+
+
 
 //Signup
 StudentSchema.statics.signup = async function(FirstName, Lastname, Username, Email, Password)  {
@@ -73,5 +84,8 @@ StudentSchema.statics.login = async function(Email, Password) {
 
     return student
 }
+
+
+  
 
 module.exports = mongoose.model('Student', StudentSchema)
