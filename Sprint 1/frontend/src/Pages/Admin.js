@@ -94,11 +94,11 @@ const Admin = () => {
       <div className='admin3'>
             <h3>What would you like to do?</h3>
       <Link to="/Instructorsignup">
-        <button>New Instructor</button>
+        <button>Add Instructor</button>
       </Link>
 
       <Link to="/adminsignup">
-        <button>New Admin</button>
+        <button>Add Admin</button>
       </Link>
 
       <Link to="/Problems">
@@ -110,6 +110,9 @@ const Admin = () => {
       </Link>
       <Link to="/traineesignup">
         <button>New Trainee</button>
+      </Link>
+      <Link to="/notifications">
+        <button>View Course requests</button>
       </Link>
       </div>
       <AdminForm />
