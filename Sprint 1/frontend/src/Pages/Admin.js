@@ -97,10 +97,6 @@ const Admin = () => {
         <button>New Instructor</button>
       </Link>
 
-      <Link to="/Instructorsignup">
-        <button>New Instructor</button>
-      </Link>
-
       <Link to="/adminsignup">
         <button>New Admin</button>
       </Link>

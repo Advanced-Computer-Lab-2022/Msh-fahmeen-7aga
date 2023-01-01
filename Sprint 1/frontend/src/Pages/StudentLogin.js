@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { UseStudentLogin } from "../Hooks/UseLogin";
 
 const LogIn = () => {
@@ -31,6 +32,12 @@ const LogIn = () => {
       />
 
       <button disabled={isLoading}>Login</button>
+      <div className="center">
+      <Link to ='/instructorlogin'>Im an Instructor</Link>
+      </div>
+      <div className="center">
+      <Link to ='/Adminlogin'>Im an Admin</Link>
+      </div>
       {error && <div className="error">{error}</div>}
     </form>
   );
