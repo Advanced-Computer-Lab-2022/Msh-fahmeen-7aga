@@ -9,6 +9,7 @@ import ContractDetails from "./Components/Contractdetails";
 import Admin from "./Pages/Admin";
 import Guest from "./Pages/Guest";
 import HomePage from "./Pages/HomePage";
+import Home from "./Pages/Home";
 import Instructor from "./Pages/Instuctor";
 import Student from "./Pages/Student";
 import Trainee from "./Pages/Trainee";
@@ -47,7 +48,8 @@ function App() {
         <NavBar />
         <div className="pages">
           <Routes>
-            <Route exact path="/" element={<HomePage />} />
+          <Route exact path="/" element={<Home />} />
+            <Route exact path="/home" element={<HomePage />} />
 
             <Route exact path="/problems" element={<ProblemList />} />
             <Route

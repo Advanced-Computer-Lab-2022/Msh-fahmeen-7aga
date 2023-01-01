@@ -5,7 +5,7 @@ import { UseLogoutinst } from "../Hooks/UseLogoutInst";
 import { Link } from "react-router-dom";
 
 //Components
-import CourseDetails from "../Components/CourseDetails";
+import CourseDetailsAdmin from "../Components/Coursedetailsadmin";
 import CourseForm from "../Components/CourseForm";
 import PriceFilter from "../Components/PriceFilter";
 
@@ -44,7 +44,10 @@ const Instructor = () => {
 
   if (instructor) {
     return (
+
       <div className="instructor">
+        <button onClick={handleClick}>Log out</button>
+
         <Link to="/Passwordchange">
           <button>Change my Password</button>
         </Link>
@@ -53,7 +56,7 @@ const Instructor = () => {
           <button>Contract</button>
         </Link>
 
-        <button onClick={handleClick}>Log out</button>
+        
 
         <label htmlFor="header-search">
           <span className="visually-hidden">Search For Courses</span>
@@ -106,7 +109,7 @@ const Instructor = () => {
                 }
               })
               .map((courses) => (
-                <CourseDetails course={courses} key={courses._id} />
+                <CourseDetailsAdmin course={courses} key={courses._id} />
               ))}
         </div>
 

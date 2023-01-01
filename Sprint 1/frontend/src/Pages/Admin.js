@@ -5,7 +5,7 @@ import { UseLogoutadmin } from "../Hooks/UseLogoutAdmin";
 
 //Components
 
-import CourseDetails from "../Components/Coursedetailsadmin";
+import CourseDetailsAdmin from "../Components/Coursedetailsadmin";
 import AdminForm from "../Components/AdminForm";
 import InstForm from "../Components/InstructorForm";
 import TraineeForm from "../Components/TraineeForm";
@@ -62,7 +62,7 @@ const Admin = () => {
               }
             })
             .map((courses) => (
-              <CourseDetails course={courses} key={courses._id} />
+              <CourseDetailsAdmin course={courses} key={courses._id} />
             ))}
 
         <button onClick={handleClick}>Log out</button>

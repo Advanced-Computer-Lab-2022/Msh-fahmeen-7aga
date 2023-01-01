@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 //Components
-import CourseDetails from "../Components/CourseDetails";
+import CourseDetailsAdmin from "../Components/Coursedetailsadmin";
 
 const Guest = () => {
   const [courses, setCourses] = useState(null);
@@ -48,7 +48,7 @@ const Guest = () => {
               }
             })
             .map((courses) => (
-              <CourseDetails course={courses} key={courses._id} />
+              <CourseDetailsAdmin course={courses} key={courses._id} />
             ))}
       </div>
     </div>
