@@ -298,6 +298,26 @@ Additional libraries used:
 
 16. /:id (DELETE)
 
+17. /promotion (PUT)
+
+   Request body (json)
+         {
+            "cid":"String"
+            "oldPrice":"Number"
+            "discount":"Number",
+            "until":"Number"
+         }
+
+18. /globalpromotion (PUT)
+
+   Request body (json)
+         {
+            "discount":"Number",
+            "until":"Number"
+         }         
+
+
+
 ## Tests
 
 - Postman can be used to test the functionality of different API endpoints make sure to attach bearer token if endpoint requires token
