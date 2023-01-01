@@ -6,13 +6,13 @@ import { UseLogoutinst } from '../Hooks/UseLogoutInst'
 
 
 //Components
-// import CourseDetails from '../Components/CourseDetails'
-// import Search from '../Components/Search'
-// import InstCourseDetails from '../Components/InstCourseDetails'
-// import CourseForm from '../Components/CourseForm'
-// import AdminForm from '../Components/AdminForm'
-// import InstForm from '../Components/InstructorForm'
-// import TraineeForm from '../Components/TraineeForm'
+import CourseDetails from '../Components/CourseDetails'
+import Search from '../Components/Search'
+import InstCourseDetails from '../Components/InstCourseDetails'
+import CourseForm from '../Components/CourseForm'
+import AdminForm from '../Components/AdminForm'
+import InstForm from '../Components/InstructorForm'
+import TraineeForm from '../Components/TraineeForm'
 import PriceFilter from "../Components/PriceFilter";
 import CourseFormins from '../Components/INScourseform'
 import InsCourse from '../Components/InsCourse'

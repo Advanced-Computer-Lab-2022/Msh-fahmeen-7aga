@@ -14,8 +14,8 @@ import LogIn from "./Pages/StudentLogin";
 import LogIninst from "./Pages/InstructorLogin";
 import SignUpinst from "./Pages/InstructorSignup";
 import Course from "./Pages/Course";
-import Exercise from "./Pages/Exercise";
-
+import Quiz from "./Pages/Quiz";
+import MainNav from "./Components/Navigation/MainNav";
 function App() {
   const { student } = UseLoginContext();
   const { instructor } = UseLoginContextInst();
@@ -23,7 +23,8 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar />
+        <MainNav/>
+        <main>
         <div className="pages">
           <Routes>
             <Route exact path="/" element={<HomePage />} />
@@ -70,9 +71,10 @@ function App() {
             <Route path="/trainee" element={<Trainee />} />
 
             <Route path="/guest" element={<Guest />} />
-            <Route path="/Exercise" element={<Exercise />} />
+            <Route path="/quiz" element={<Quiz />} />
           </Routes>
         </div>
+        </main>
       </BrowserRouter>
     </div>
   );

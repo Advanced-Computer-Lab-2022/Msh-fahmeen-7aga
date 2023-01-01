@@ -3,6 +3,7 @@ import {UseLoginContext} from '../Hooks/UseLoginContext'
 import Rating from '@mui/material/Rating'
 import React from "react";
 import ReactStars from "react-rating-stars-component";
+import { Card } from '@mui/material';
 
 
 
@@ -32,6 +33,7 @@ const CourseDetails = ({ course }) => {
 
     return(
         <div className="course-details">
+            <Card className='card'>
             <h4>{course.title}</h4>
             <p><strong>Subtitle: </strong> {course.subtitle}</p>
             <p><strong>Summary: </strong> {course.summary}</p>
@@ -46,7 +48,7 @@ const CourseDetails = ({ course }) => {
            
            
            </button>
-           
+           </Card>
         </div>
         
     )

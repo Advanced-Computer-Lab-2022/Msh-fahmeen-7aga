@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-const Exercise = () => {
-  const ExerciseContent = [
+const Quiz = () => {
+  const quizContent = [
     {
       questionText: "What is React?",
       answerOptions: [
@@ -50,30 +50,30 @@ const Exercise = () => {
     }
 
     const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < ExerciseContent.length) {
+    if (nextQuestion < quizContent.length) {
       setCurrentQuestion(nextQuestion);
     } else {
       setShowScore(true);
     }
   };
   return (
-    <div className="Exercise">
+    <div className="quiz">
       {showScore ? (
         <div className="score-section">
-          You scored {score} out of {ExerciseContent.length}
+          You scored {score} out of {quizContent.length}
         </div>
       ) : (
         <>
           <div className="question-section">
             <div className="question-count">
-              <span>Question {currentQuestion + 1}</span>/{ExerciseContent.length}
+              <span>Question {currentQuestion + 1}</span>/{quizContent.length}
             </div>
             <div className="question-text">
-              {ExerciseContent[currentQuestion].questionText}
+              {quizContent[currentQuestion].questionText}
             </div>
           </div>
           <div className="answer-section">
-            {ExerciseContent[currentQuestion].answerOptions.map((answerOption) => (
+            {quizContent[currentQuestion].answerOptions.map((answerOption) => (
               <button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>
                 {answerOption.answerText}
               </button>
@@ -85,4 +85,4 @@ const Exercise = () => {
   );
 };
 
-export default Exercise;
+export default Quiz;

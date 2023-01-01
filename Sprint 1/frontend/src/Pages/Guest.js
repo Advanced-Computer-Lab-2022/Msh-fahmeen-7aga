@@ -2,11 +2,11 @@ import{useEffect, useState} from 'react'
 
 
 //Components
-// import AdminForm from '../Components/AdminForm'
-// import InstForm from '../Components/InstructorForm'
-// import TraineeForm from '../Components/TraineeForm'
 import CourseDetails from '../Components/CourseDetails'
 import CourseForm from '../Components/CourseForm'
+import AdminForm from '../Components/AdminForm'
+import InstForm from '../Components/InstructorForm'
+import TraineeForm from '../Components/TraineeForm'
 
 const Guest = () => {
     const [courses, setCourses]=useState(null)
