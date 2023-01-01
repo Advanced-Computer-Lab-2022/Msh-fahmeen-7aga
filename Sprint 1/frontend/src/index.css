@@ -159,3 +159,7 @@ div button {
 .prom{
   padding-right: 70rem;
 }
+.reject{
+  color: #000000;
+  background-color: #d51841;
+}
