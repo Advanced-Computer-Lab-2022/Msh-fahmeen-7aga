@@ -5,7 +5,7 @@ import { UseLogoutadmin } from "../Hooks/UseLogoutAdmin";
 
 //Components
 
-import CourseDetails from "../Components/Coursedetailsadmin";
+import CourseDetails from "../Components/Coursedetailsadm";
 import AdminForm from "../Components/AdminForm";
 import InstForm from "../Components/InstructorForm";
 import TraineeForm from "../Components/TraineeForm";
@@ -26,6 +26,8 @@ const Admin = () => {
          }
          else setval(true)
          }
+
+
   useEffect(() => {
     const fetchCourses = async () => {
       const response = await fetch("http://localhost:4000/admin/viewcourses");
