@@ -1,13 +1,13 @@
-import {UseLoginContext} from './UseLoginContext'
+import { UseLoginContext } from "./UseLoginContext";
 
 export const UseLogout = () => {
-    const {dispatch} = UseLoginContext()
+  const { dispatch } = UseLoginContext();
 
-    const logout = () => {
-        localStorage.removeItem('student')
+  const logout = () => {
+    localStorage.removeItem("student");
 
-        dispatch({type: 'LOGOUT'})
-    }
+    dispatch({ type: "LOGOUT" });
+  };
 
-    return {logout}
-}
+  return { logout };
+};

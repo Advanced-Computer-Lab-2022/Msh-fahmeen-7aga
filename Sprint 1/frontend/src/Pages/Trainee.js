@@ -2,11 +2,6 @@ import{useEffect, useState} from 'react'
 
 
 //Components
-import CourseDetails from '../Components/CourseDetails'
-import CourseForm from '../Components/CourseForm'
-import AdminForm from '../Components/AdminForm'
-import InstForm from '../Components/InstructorForm'
-import TraineeForm from '../Components/TraineeForm'
 import CourseDetailsnp from '../Components/CourseDetailsNoPrice'
 
 
@@ -52,7 +47,7 @@ const Trainee = () => {
                     />
                 ))}
             </div>
-            <CourseForm />
+           
         </div>
         
     )
