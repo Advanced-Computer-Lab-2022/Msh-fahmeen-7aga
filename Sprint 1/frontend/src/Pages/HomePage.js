@@ -26,6 +26,9 @@ const HomePage = () => {
       <Link to="/Quiz">
         <button>take quiz</button>
       </Link>
+      <Link to="/Report">
+        <button>Report</button>
+      </Link>
 
       <PopularCourses />
     </div>
