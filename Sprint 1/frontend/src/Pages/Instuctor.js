@@ -8,12 +8,15 @@ import { Link } from "react-router-dom";
 import CourseDetails from "../Components/Coursedetailsadmin";
 import CourseForm from "../Components/CourseForm";
 import PriceFilter from "../Components/PriceFilter";
+import RatingFilter from "../Components/RatingFilter";
+import Card from "../Components/Card";
+
 
 const Instructor = () => {
   const { courses, dispatch } = UseCourseContext();
   const { instructor } = UseLoginContextInst();
   const [searchterm, setsearchterm] = useState("");
-
+  const [rating, setrating] = useState(null);
   const [priceMin, setpriceMin] = useState(null);
   const [priceMax, setpriceMax] = useState(null);
   const { logout } = UseLogoutinst();
@@ -74,6 +77,7 @@ const Instructor = () => {
           setMax={setpriceMax}
           placeholder="Minimum"
         />
+        <RatingFilter setRating={setrating} />
 
         <div className="Courses">
           <h3>Your courses</h3>
@@ -105,8 +109,17 @@ const Instructor = () => {
                   }
                 }
               })
+              .filter((course) => {
+                if (rating == null) {
+                  return course;
+                } else if (course.rating >= rating) {
+                  return course;
+                }
+              })
               .map((courses) => (
+                <Card>
                 <CourseDetails course={courses} key={courses._id} />
+                </Card>
               ))}
         </div>
 

@@ -23,8 +23,8 @@ const HomePage = () => {
       <Link to="/studentsignup">
         <button>Sign up</button>
       </Link>
-      <Link to="/Quiz">
-        <button>take quiz</button>
+      <Link to="/exercise">
+        <button>take Exercise</button>
       </Link>
 
       <PopularCourses />

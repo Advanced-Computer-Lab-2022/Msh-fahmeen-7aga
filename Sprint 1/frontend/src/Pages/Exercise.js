@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import "../Components/Exercise.css";
 
-const Quiz = () => {
+
+const Exercise = () => {
   const quizContent = [
     {
       questionText: "What is React?",
@@ -57,7 +59,7 @@ const Quiz = () => {
     }
   };
   return (
-    <div className="quiz">
+    <div className="exercise">
       {showScore ? (
         <div className="score-section">
           You scored {score} out of {quizContent.length}
@@ -87,4 +89,4 @@ const Quiz = () => {
   );
 };
 
-export default Quiz;
+export default Exercise;

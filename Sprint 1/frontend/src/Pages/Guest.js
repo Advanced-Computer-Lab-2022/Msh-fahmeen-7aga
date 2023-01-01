@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 //Components
 import CourseDetails from "../Components/Coursedetailsadmin";
+import Card from "../Components/Card";
+
 
 const Guest = () => {
   const [courses, setCourses] = useState(null);
@@ -48,7 +50,9 @@ const Guest = () => {
               }
             })
             .map((courses) => (
+              <Card>
               <CourseDetails course={courses} key={courses._id} />
+              </Card>
             ))}
       </div>
     </div>

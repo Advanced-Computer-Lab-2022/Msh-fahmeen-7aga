@@ -33,10 +33,14 @@ const LogIn = () => {
 
       <button disabled={isLoading}>Login</button>
       <div className="center">
+        <button>
       <Link to ='/instructorlogin'>Im an Instructor</Link>
+      </button>
       </div>
       <div className="center">
+        <button>
       <Link to ='/Adminlogin'>Im an Admin</Link>
+      </button>
       </div>
       {error && <div className="error">{error}</div>}
     </form>

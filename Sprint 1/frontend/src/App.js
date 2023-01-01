@@ -17,7 +17,7 @@ import LogIn from "./Pages/StudentLogin";
 import LogIninst from "./Pages/InstructorLogin";
 import SignUpinst from "./Pages/InstructorSignup";
 import Course from "./Pages/Course";
-import Quiz from "./Pages/Quiz";
+import Exercise from "./Pages/Exercise";
 import InstructorsPage from "./Pages/InstructorList";
 import Passchange from "./Components/Password confirm";
 import Forgotpassword from "./Components/Enteremailforgot";
@@ -146,7 +146,7 @@ function App() {
               path="/resetconfirmation"
               element={<PasswordResetEmailSent />}
             />
-            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/exercise" element={<Exercise />} />
             <Route path="/allteachers" element={<InstructorsPage />} />
             <Route exact path="/Passwordchange" element={<Passchange />} />
           </Routes>
