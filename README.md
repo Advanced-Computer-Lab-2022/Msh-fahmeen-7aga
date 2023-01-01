@@ -30,6 +30,7 @@ Additional libraries used:
 - Youtube-React a react Youtube Client
 - bcryptjs
 - mongoose - Object Document Mapper (ODM) of choice
+- Material UI 
 - Bootstrap
 
 ## Features
