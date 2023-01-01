@@ -6,10 +6,11 @@ const {
     AddAdmin,
     AddInstructor,
     AddTrainee,
-    setPromotion
+    setPromotion,
+    globalPromo
 } = require('../Controllers/CourseController')
 
-const {InstructorSignup} = require('../Controllers/InstructorController')
+
 
 
 const router = express.Router()
@@ -32,9 +33,9 @@ router.post('/addinstructor', AddInstructor)
 //add new trainee
 router.post('/addtrainee', AddTrainee)
 
-//instructor sign up
-router.post('/instructorsignup', InstructorSignup)
-//admin set promo
 router.put('/promotion',setPromotion)
+
+router.put('/globalpromotion',globalPromo)
+
 
 module.exports = router

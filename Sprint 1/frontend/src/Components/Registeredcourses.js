@@ -9,7 +9,7 @@ function StudentCourses() {
   useEffect(() => {
     
     async function fetchData() {
-      const studentId = '63adb74fa2e3d13dec976a19'
+      const studentId = '63b08461374a6ed4ee08f84e'
       const response = await axios.post('http://localhost:4000/guest/fetch-student-courses', { studentId })
       setCourses(response.data)
     }

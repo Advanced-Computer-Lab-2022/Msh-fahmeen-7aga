@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+
 const PopularCourses = () => {
   const [courses, setCourses] = useState([]);
 

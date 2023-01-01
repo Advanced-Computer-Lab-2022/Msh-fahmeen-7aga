@@ -10,9 +10,12 @@ const TRAINEEROUTES = require('./Routes/TraineeCourse')
 const GUESTROUTES = require('./Routes/GuestCourse')
 const USERROUTES = require('./Routes/Student')
 const USERROUTESINS = require('./Routes/Instructor')
+const USERROUTESADMIN = require('./Routes/Admin')
+const USERROUTESTRAINEE = require('./Routes/Trainee')
+const EXERCISEROUTES = require('./Routes/ExerciseRoutes')
 
 const app = express();
-//const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4000;
 
 
 app.use(cors());
@@ -41,3 +44,6 @@ app.use('/trainee', TRAINEEROUTES)
 app.use('/guest', GUESTROUTES)
 app.use('/user', USERROUTES)
 app.use('/userinstructor', USERROUTESINS)
+app.use('/useradmin', USERROUTESADMIN)
+app.use('/usertrainee', USERROUTESTRAINEE)
+app.use('/exercise', EXERCISEROUTES)

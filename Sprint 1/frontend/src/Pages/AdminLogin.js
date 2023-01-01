@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { UseTraineeLogin } from "../Hooks/UseLoginTrainee";
+import { UseAdminLogin } from "../Hooks/UseLoginAdmin";
 
-const LogIntrainee = () => {
+const LogInadmin = () => {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
-  const { login, error, isLoading } = UseTraineeLogin();
+  const { login, error, isLoading } = UseAdminLogin();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,6 +15,7 @@ const LogIntrainee = () => {
   return (
     <form className="Login" onSubmit={handleSubmit}>
       <h3>Login</h3>
+
       <label>Email:</label>
       <input
         type="email"
@@ -36,4 +37,4 @@ const LogIntrainee = () => {
   );
 };
 
-export default LogIntrainee;
+export default LogInadmin;

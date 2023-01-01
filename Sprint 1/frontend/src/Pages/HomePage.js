@@ -5,9 +5,9 @@ const HomePage = () => {
   return (
     <div className="HomePage">
       <Link to="/Instructorlogin">
-        <button>Instructor Login</button>
+        <button>Instructor</button>
       </Link>
-      <Link to="/admin">
+      <Link to="/adminlogin">
         <button>Adminstrator</button>
       </Link>
 
@@ -15,21 +15,19 @@ const HomePage = () => {
         <button>Guest</button>
       </Link>
       <Link to="/studentlogin">
-        <button>Student Login</button>
+        <button>Student</button>
       </Link>
       <Link to="/trainee">
         <button>Trainee</button>
       </Link>
       <Link to="/studentsignup">
-        <button>Student Sign up</button>
+        <button>Sign up</button>
       </Link>
       <Link to="/Quiz">
         <button>take quiz</button>
       </Link>
 
       <PopularCourses />
-
-
     </div>
   );
 };

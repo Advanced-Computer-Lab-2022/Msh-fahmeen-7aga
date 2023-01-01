@@ -53,7 +53,8 @@ hasPromo:{
   },
   videoId: {
     type: String,
-  }
+  },
+  lessonVideoIds: [{ type: String }],
 }, { timestamps: true })
 
 module.exports = mongoose.model('Course', courseschema)

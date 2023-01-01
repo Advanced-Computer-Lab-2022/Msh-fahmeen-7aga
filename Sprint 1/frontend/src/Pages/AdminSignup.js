@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { UseInstructorSignup } from "../Hooks/UseInstructorSignup";
+import { UseAdminSignup } from "../Hooks/UseAdminSignup";
 
-const SignUpinst = () => {
+const SignUpadmin = () => {
   const [FirstName, setFirstName] = useState("");
   const [Lastname, setLastName] = useState("");
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
-  const { signup, error, isLoading } = UseInstructorSignup();
+  const { signup, error, isLoading } = UseAdminSignup();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,7 +15,7 @@ const SignUpinst = () => {
   };
 
   return (
-    <form className="Signup" onSubmit={handleSubmit}>
+    <form className="Signupadmin" onSubmit={handleSubmit}>
       <h3>Sign up</h3>
 
       <label>First Name:</label>
@@ -52,4 +52,4 @@ const SignUpinst = () => {
   );
 };
 
-export default SignUpinst;
+export default SignUpadmin;

@@ -8,12 +8,16 @@ import { UseLoginContextInst } from "../../Hooks/UseLoginContextInst";
 import './NavLinks.css'
 import { LoginContext } from "../../Context/LoginContext";
 import Instructor from "../../Pages/Instuctor";
+import { UseLogoutadmin } from "../../Hooks/UseLogoutAdmin";
+import { UseLoginContextAdmin } from "../../Hooks/UseLoginContextAdmin";
 
 const NavLinks = props=>{
     const {student} = UseLoginContext()
     const { instructor } = UseLoginContextInst()
+    const { admin } = UseLoginContextAdmin()
     const { logout } = UseLogout()
     const { logoutIns } = UseLogoutinst()
+    const { logoutAdm } = UseLogoutadmin()
  
     const handleClick = () => {
         logout()
@@ -22,21 +26,34 @@ const NavLinks = props=>{
     const handleInsClick = ()=>{
         logoutIns()
       }
+      const handleClickAdm = ()=>{
+        logoutAdm()
+      }
     return( 
     <ul className="nav-links">
         {student &&
             
         <li>
-            <NavLink to={`/${props.id}/student`}>My Courses</NavLink>
+            <NavLink to={'/student'}>All Courses</NavLink>
         </li>}
+        {student &&
+        <li>
+            <NavLink to ={'/enrolledcourses'}>My Courses</NavLink>
+        </li>
+        }
     {student &&
         <li>
             <button onClick={handleClick}>LogOut</button>
         </li>
     }
+     {admin &&
+        <li>
+            <button onClick={handleClickAdm}>LogOut</button>
+        </li>
+    }
         {instructor &&
         <li>
-            <button onClick={handleInsClick}>LogOutI</button>
+            <button onClick={handleInsClick}>LogOut</button>
         </li>
     }
       {!student &&     

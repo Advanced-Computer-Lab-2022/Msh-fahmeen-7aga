@@ -20,14 +20,21 @@ const SolvedProblem = require('../Models/SolvedProblems')
 const express = require('express')
 const {
     GetCourse,
-    GetCourses,
+    GetCourses, rateCourse,
     registerForCourse,
-    downloadCoursePDF,checkPromotion
+    downloadCoursePDF,
+    checkPromotion
 } = require('../Controllers/CourseController')
+
+const {InstructorSignup} = require('../Controllers/InstructorController')
+
+
 
 
 
 const {TraineeSignup} = require('../Controllers/TraineeController')
+
+const {AdminSignup} = require('../Controllers/AdminController')
 
 
 
@@ -41,7 +48,13 @@ const router = express.Router()
 // Get all courses
 router.get('/viewcourses', GetCourses)
 
+//instructor sign up
+router.post('/instructorsignup', InstructorSignup)
 router.post('/traineesignup', TraineeSignup)
+
+router.post('/adminsignup', AdminSignup)
+
+
 
 
 //View Single Course
@@ -51,9 +64,6 @@ router.get('/:id', GetCourse)
 
 
 
-
-
-router.put('/checkPromotion',checkPromotion) //checking promos
 
 
 
@@ -105,13 +115,7 @@ router.put('/checkPromotion',checkPromotion) //checking promos
 
   router.get('/courses/:id/pdf', downloadCoursePDF);
 
- 
-
-
-
-
-  
-  
+  router.put('/checkPromotion',checkPromotion)
 
 
   router.post('/request-access/:courseId', async (req, res) => {
@@ -306,7 +310,6 @@ router.put('/checkPromotion',checkPromotion) //checking promos
     }
   })
 
-
   router.post('/report-problem', async (req, res) => {
     try {
       const problem = new Problem({
@@ -365,7 +368,6 @@ router.put('/checkPromotion',checkPromotion) //checking promos
     }
   });
 
-
   router.post('/popularcourses', async (req, res) => {
     try {
       // Populate the `registeredStudents` array for each course
@@ -378,6 +380,7 @@ router.put('/checkPromotion',checkPromotion) //checking promos
           subtitle: course.subtitle,
           price: course.price,
           summary: course.summary,
+          TA: course.TA,
           Subject: course.Subject,
           Promotion: course.Promotion,
           hasPromo: course.hasPromo,
@@ -391,8 +394,6 @@ router.put('/checkPromotion',checkPromotion) //checking promos
       res.status(500).json({ message: err.message });
     }
   });
-
-
 
   router.post('/rate', async (req, res) => {
     try {
@@ -417,7 +418,6 @@ router.put('/checkPromotion',checkPromotion) //checking promos
     }
   });
   
-  
   router.post('/avg-rating', async (req, res) => {
     try {
       // find the course in the database
@@ -431,11 +431,7 @@ router.put('/checkPromotion',checkPromotion) //checking promos
       res.status(500).send({ message: error.message });
     }
   });
-  
-  
-  
-  
-  
+
   
   
   

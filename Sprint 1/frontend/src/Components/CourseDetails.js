@@ -1,50 +1,41 @@
-import { UseCourseContext } from '../Hooks/UseCourseContext';
-import { UseLoginContext } from '../Hooks/UseLoginContext';
-import React, { useState, useEffect } from 'react';
+import { UseCourseContext } from '../Hooks/UseCourseContext'
+import { UseLoginContext } from '../Hooks/UseLoginContext'
+import React, { useState, useEffect } from "react";
 import Modal from 'react-modal';
 import YouTube from 'react-youtube';
+import jsPDF from 'jspdf';
 
 
 const CourseDetails = ({ course }) => {
-  const { student } = UseLoginContext();
-  const [pdfsVisible, setPdfsVisible] = useState(false);
-  const [reportProblemModalOpen, setReportProblemModalOpen] = useState(false);
-  const [problemType, setProblemType] = useState('');
-  const [problemDescription, setProblemDescription] = useState('');
-  const [rating, setRating] = useState(0);
-  const [avgRating, setAvgRating] = useState(0);
+const { student } = UseLoginContext();
+const [reportProblemModalOpen, setReportProblemModalOpen] = useState(false);
+const [problemType, setProblemType] = useState('');
+const [problemDescription, setProblemDescription] = useState('');
+const [rating, setRating] = useState(0);
+const [avgRating, setAvgRating] = useState(0);
+const [introVideoVisible, setIntroVideoVisible] = useState(false);
+const [lessonVideosVisible, setLessonVideosVisible] = useState(false);
+const [notes, setNotes] = useState([]);
+const [selectedCountry, setSelectedCountry] = useState('US');
 
 
-  const checkpromo = async (cid) => {
-    const response = await fetch('http://localhost:4000/guest/checkPromotion', {
-      method: 'PUT',
-      body: JSON.stringify({ cid }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  };
 
-  if (course.hasPromo === true) {
-    const cid = course._id;
-    checkpromo(cid);
-  }
 
-  const registerForCourse = async () => {
-    const studentEmail = student.Email;
-    const courseId = course._id;
-    const result = await fetch('http://localhost:4000/guest/register-for-course', {
-      method: 'POST',
-      body: JSON.stringify({ studentEmail, courseId }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await result.json();
-    console.log(data);
-  };
+const registerForCourse = async () => {
+const studentEmail = student.Email;
+const courseId = course._id;
+const result = await fetch('http://localhost:4000/guest/register-for-course', {
+method: 'POST',
+body: JSON.stringify({ studentEmail, courseId }),
+headers: {
+'Content-Type': 'application/json',
+},
+});
+const data = await result.json();
+console.log(data);
+};
 
-  const openReportProblemModal = () => {
+const openReportProblemModal = () => {
     setReportProblemModalOpen(true);
   };
   
@@ -82,6 +73,11 @@ const CourseDetails = ({ course }) => {
       alert('Error reporting problem. Please try again later.');
     }
   };
+
+  const playIntroVideo = () => {
+    // show the iframe element
+    setIntroVideoVisible(true);
+    };
 
   useEffect(() => {
     // fetch the average rating for the course when the component mounts
@@ -139,8 +135,69 @@ const CourseDetails = ({ course }) => {
     }
   };
 
+  const toggleIntroVideo = () => {
+    setIntroVideoVisible(!introVideoVisible);
+  };
+
+  const toggleLessonVideos = () => {
+    setLessonVideosVisible(!lessonVideosVisible);
+  };
+
+  const updateNotes = (index, newNotes) => {
+    const updatedNotes = [...notes];
+    updatedNotes[index] = newNotes;
+    setNotes(updatedNotes);
+  };
+
+  const downloadNotes = () => {
+    // create a new PDF document
+    const doc = new jsPDF();
+    // add the notes to the document
+    course.lessonVideoIds.forEach((videoId, index) => {
+      doc.text(`Lesson ${index + 1}`, 10, 10 + (index * 10));
+      doc.text(notes[index] || '', 10, 20 + (index * 10));
+    });
+    // save the PDF to the user's device
+    doc.save('notes.pdf');
+  };
+
+  const handleCountryChange = (event) => {
+    setSelectedCountry(event.target.value);
+  };
+
+  const getExchangeRate = (country) => {
+    // return the exchange rate for the given country
+    switch (country) {
+      case 'US':
+        return 1.0;
+      case 'UK':
+        return 0.8;
+      case 'EU':
+        return 0.9;
+      // add more cases for other countries
+      default:
+        return 1.0;
+    }
+  };
+
+  const setCoursePrice = () => {
+    const exchangeRate = getExchangeRate(selectedCountry);
+    const price = course.price * exchangeRate;
+    // update the displayed price in the component
+  };
   
+  
+  
+  
+
+
   return (
+    
+
+    
+
+
+
     <div className="course-details">
       <h4>{course.title}</h4>
       <p>
@@ -155,6 +212,43 @@ const CourseDetails = ({ course }) => {
         <strong>Price: </strong>
         {course.price}
       </p>
+
+
+      {introVideoVisible ? (
+  <>
+    <YouTube videoId={course.videoId} width="640" height="390" />
+    <button onClick={toggleIntroVideo}>Hide intro video</button>
+
+
+  </>
+) : (
+  <button onClick={toggleIntroVideo}>Show intro video</button>
+
+
+)
+
+}
+
+{course.lessonVideoIds.map((lessonVideoId, index) => (
+  <div key={lessonVideoId}>
+    <h4>Lesson {index + 1}</h4>
+    <YouTube videoId={lessonVideoId} />
+    <form>
+      <textarea value={notes[index]} onChange={(e) => setNotes(notes.map((note, i) => i === index ? e.target.value : note))} />
+      <button type="button" onClick={() => downloadNotes(index)}>Download notes</button>
+    </form>
+  </div>
+))}
+
+
+
+
+
+
+
+
+      
+      
     {/* display the rating form */}
     <div>
       <h5>Rate This Course</h5>
@@ -170,49 +264,14 @@ const CourseDetails = ({ course }) => {
       <button onClick={handleRatingSubmit}>Submit Rating</button>
     </div>
 
+
+
     {/* display the average rating */}
     <div>
       <h5>Average Rating: {avgRating}</h5>
     </div>
-
-    {course.videoId && (
-        <YouTube
-          videoId={course.videoId}
-          opts={{
-            height: '390',
-            width: '640',
-          }}
-        />
-      )}
-      
-      <button onClick={() => setPdfsVisible(!pdfsVisible)}>view course files</button>
       <button onClick={registerForCourse}>Register</button>
       <button onClick={openReportProblemModal}>Report Problem</button>
-      {pdfsVisible && (
-        <div>
-          <h5>PDF Files</h5>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {course.pdfs.map((pdf) => (
-                <tr key={pdf._id}>
-                  <td>{pdf.name}</td>
-                  <td>
-                    <a href={`http://localhost:4000/guest/courses/${course._id}/pdf/${pdf._id}`}>
-                      Download
-                    </a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
   <Modal isOpen={reportProblemModalOpen} onRequestClose={closeReportProblemModal}>
     <h3>Report Problem</h3>
     <p>
@@ -250,9 +309,11 @@ const CourseDetails = ({ course }) => {
 </div>
 
 
+
+
+
+
 );
 };
 
 export default CourseDetails;
-
-  

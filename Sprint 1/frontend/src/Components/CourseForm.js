@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { UseCourseContext } from '../Hooks/UseCourseContext'
 
+
 const CourseForm = () => {
     const {dispatch} = UseCourseContext()
     const[title, setTitle] = useState('')
@@ -10,11 +11,13 @@ const CourseForm = () => {
     const[Subject, setSubject] = useState('')
     const [videoId, setVideoId] = useState('');
     const[error, setError] = useState(null)
+    const [lessonVideoIds, setLessonVideoIds] = useState('');
 
     const handleSubmit = async (e) => {
+      const lessonVideoIdsArray = lessonVideoIds.split(',');
         e.preventDefault()
 
-        const course = {title, subtitle, price, summary, Subject, videoId }
+        const course = { title, subtitle, price, summary, Subject, videoId, lessonVideoIds: lessonVideoIdsArray };
 
         const response = await fetch('http://localhost:4000/admin/addcourse' , {
             method: 'POST',
@@ -89,6 +92,13 @@ const CourseForm = () => {
             onChange={(e) => setVideoId(e.target.value)}
             value={videoId}
             />
+
+<label>Lesson Video IDs:</label>
+<input
+  type="text"
+  onChange={(e) => setLessonVideoIds(e.target.value)}
+  value={lessonVideoIds}
+/>
 
             <button>Add Course</button>
         </form>

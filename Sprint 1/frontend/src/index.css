@@ -156,3 +156,10 @@ div button {
 .header-search{
   padding-right: 4rem;
 }
+.prom{
+  padding-right: 70rem;
+}
+.reject{
+  color: #000000;
+  background-color: #d51841;
+}
