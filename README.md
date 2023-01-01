@@ -246,25 +246,7 @@ Additional libraries used:
          }
     
 
-13.  /seats/:id (PUT) (
-
-    Request body (json)
-
-         {
-            "type": "string",
-            "seats": ["integer"],
-         }
-
-14.  /:id (PUT) 
-
-    Request body (json)
-
-         {
-            "type": "string",
-            "flightId": "string",
-            "flightSeats": ["integer"],
-            "flightCabin": "string",
-         }
+13. 
 
 ## Tests
 
