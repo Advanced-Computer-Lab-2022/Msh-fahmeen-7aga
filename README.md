@@ -246,7 +246,57 @@ Additional libraries used:
          }
     
 
-13. 
+### /exercise
+
+13. /createExercise (POST)
+
+   Request body (json)
+         {
+            "creator",
+            "title",
+            "questoin1text",
+            "question1answer",
+            "question2text",
+            "question2answer",
+            "question3text",
+            "question3answer",
+            "question4text",
+            "question4answer",
+         }
+
+14. /instexercises/:instid (GET)
+   
+      Request body (json)
+            {
+               "creator",
+               "title",
+               "questoin1text",
+               "question1answer",
+               "question2text",
+               "question2answer",
+               "question3text",
+               "question3answer",
+               "question4text",
+               "question4answer",
+            }
+
+15. /:id (PATCH)
+   
+         Request body (json)
+               {
+                  "creator",
+                  "title",
+                  "questoin1text",
+                  "question1answer",
+                  "question2text",
+                  "question2answer",
+                  "question3text",
+                  "question3answer",
+                  "question4text",
+                  "question4answer",
+               }
+
+16. /:id (DELETE)
 
 ## Tests
 
