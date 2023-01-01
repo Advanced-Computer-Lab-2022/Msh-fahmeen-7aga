@@ -34,7 +34,7 @@ import LogInadmin from "./Pages/AdminLogin";
 import SignUpadmin from "./Pages/AdminSignup";
 
 import PasswordResetEmailSent from "./Components/Passreset";
-
+import MainNav from './Components/Navigation/MainNav'
 function App() {
   const { student } = UseLoginContext();
   const { instructor } = UseLoginContextInst();
@@ -44,7 +44,8 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar />
+        <MainNav/>
+        <main>
         <div className="pages">
           <Routes>
             <Route exact path="/" element={<HomePage />} />
@@ -150,6 +151,7 @@ function App() {
             <Route exact path="/Passwordchange" element={<Passchange />} />
           </Routes>
         </div>
+        </main>
       </BrowserRouter>
     </div>
   );

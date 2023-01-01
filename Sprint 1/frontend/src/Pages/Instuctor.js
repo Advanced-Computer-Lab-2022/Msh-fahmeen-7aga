@@ -5,7 +5,7 @@ import { UseLogoutinst } from "../Hooks/UseLogoutInst";
 import { Link } from "react-router-dom";
 
 //Components
-import CourseDetails from "../Components/CourseDetails";
+import CourseDetails from "../Components/Coursedetailsadmin";
 import CourseForm from "../Components/CourseForm";
 import PriceFilter from "../Components/PriceFilter";
 

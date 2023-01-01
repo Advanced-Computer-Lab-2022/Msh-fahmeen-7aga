@@ -38,6 +38,19 @@ header a {
   grid-template-columns: 3fr 1fr;
   gap: 100px;
 }
+.admin2 {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 100px;
+  padding-top: 1rem;
+}
+.admin3{
+position: left;
+
+}
+.search{
+  padding-right: 27rem;
+}
 .workout-details {
   background: #fff;
   border-radius: 4px;
@@ -139,4 +152,10 @@ div button {
 /*set color on hover*/
 .my-star:not(.is-active):hover{
   color: #fb8900;
+}
+.header-search{
+  padding-right: 4rem;
+}
+.prom{
+  padding-right: 70rem;
 }

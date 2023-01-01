@@ -3,11 +3,11 @@ import {UseLoginContextAdmin} from './UseLoginContextAdmin'
 export const UseLogoutadmin = () => {
     const {dispatch} = UseLoginContextAdmin()
 
-    const logout = () => {
+    const logoutAdm = () => {
         localStorage.removeItem('admin')
 
         dispatch({type: 'LOGOUT'})
     }
 
-    return {logout}
+    return {logoutAdm}
 }

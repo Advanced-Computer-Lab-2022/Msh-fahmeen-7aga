@@ -22,7 +22,8 @@ const {
     GetCourse,
     GetCourses, rateCourse,
     registerForCourse,
-    downloadCoursePDF
+    downloadCoursePDF,
+    checkPromotion
 } = require('../Controllers/CourseController')
 
 const {InstructorSignup} = require('../Controllers/InstructorController')
@@ -114,13 +115,7 @@ router.get('/:id', GetCourse)
 
   router.get('/courses/:id/pdf', downloadCoursePDF);
 
- 
-
-
-
-
-  
-  
+  router.put('/checkPromotion',checkPromotion)
 
 
   router.post('/request-access/:courseId', async (req, res) => {

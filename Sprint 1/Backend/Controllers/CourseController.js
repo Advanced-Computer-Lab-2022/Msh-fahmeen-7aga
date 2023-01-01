@@ -231,6 +231,52 @@ async function updateBalance(req, res) {
   }
 }
 
+const setPromotion = async (req,res) =>{
+  const prom = req.body
+  const newPrice =  prom.oldPrice - (prom.discount/100) * prom.oldPrice 
+  var pr = {oldPrice:prom.oldPrice, discount:prom.discount, until:prom.until}
+  await CourseModel.findByIdAndUpdate(prom.cid,{Promotion:pr})
+  await CourseModel.findByIdAndUpdate(prom.cid,{hasPromo:true})
+  await CourseModel.findByIdAndUpdate(prom.cid,{price:newPrice.toFixed(2)})
+  CourseModel.findById(prom.cid).then(function(doc){console.log(doc)})
+ 
+  
+
+}
+
+const checkPromotion = async (req,res)=>{
+ const cid = req.body
+ var flag;
+ const currentTime = new Date().toDateString()
+ 
+ await CourseModel.findById(cid.cid).then(function(doc)
+ {if((doc.Promotion.until).toDateString()<currentTime){
+     flag = 0;
+  CourseModel.findByIdAndUpdate(cid.cid,{price:doc.Promotion.oldPrice})
+ .then(CourseModel.findByIdAndUpdate(cid.cid,{hasPromo:false})).then(function(doc){console.log(doc)})
+ }})
+ if(flag===0){
+     await CourseModel.findByIdAndUpdate(cid.cid,{hasPromo:false})
+ }
+
+}
+const globalPromo = async (req,res)=>{
+const date =req.body.until
+const discount = req.body.discount
+const crs = await CourseModel.find({})
+crs.forEach((elem)=>{
+console.log(elem.id)
+const oldPrice = elem.price
+const newPrice = oldPrice - (discount/100) * oldPrice
+var pr = {oldPrice:oldPrice, discount:discount, until:date}
+ CourseModel.findByIdAndUpdate(elem.id,{Promotion:pr,hasPromo:true,price:newPrice.toFixed(2)}).then(function(doc){console.log(doc)})
+})
+
+
+
+
+}
+
 module.exports = {
   GetCourse,
   GetCourses,
@@ -244,4 +290,7 @@ module.exports = {
   downloadCoursePDF,
   getBalance,
   updateBalance,
+  setPromotion,
+  checkPromotion,
+  globalPromo
 };
