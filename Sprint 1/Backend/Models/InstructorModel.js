@@ -23,6 +23,13 @@ const InstructorSchema = new Schema({
         type: String,
         required: true
     },
+    Exercises: [
+        {
+          type: mongoose.Types.ObjectId,
+          required: true,
+          ref: "Exercise",
+        },
+      ],
 }, {timestamps: true})
 
 //Signup
