@@ -32,7 +32,7 @@ import TermsAndConditions from "./Pages/Terms";
 import StudentCourses from "./Components/Registeredcourses";
 import LogInadmin from "./Pages/AdminLogin";
 import SignUpadmin from "./Pages/AdminSignup";
-
+import Report from "./Pages/Report";
 import PasswordResetEmailSent from "./Components/Passreset";
 import MainNav from './Components/Navigation/MainNav'
 function App() {
@@ -149,6 +149,7 @@ function App() {
             <Route path="/exercise" element={<Exercise />} />
             <Route path="/allteachers" element={<InstructorsPage />} />
             <Route exact path="/Passwordchange" element={<Passchange />} />
+            <Route exact path="/Report" element={<Report />} />
           </Routes>
         </div>
         </main>

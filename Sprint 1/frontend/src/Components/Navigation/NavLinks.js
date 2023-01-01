@@ -4,12 +4,13 @@ import { UseLogout } from "../../Hooks/UseLogout";
 import { UseLoginContext } from "../../Hooks/UseLoginContext";
 import { UseLogoutinst } from "../../Hooks/UseLogoutInst";
 import { UseLoginContextInst } from "../../Hooks/UseLoginContextInst";
-
+import country from "../Country";
 import './NavLinks.css'
 import { LoginContext } from "../../Context/LoginContext";
 import Instructor from "../../Pages/Instuctor";
 import { UseLogoutadmin } from "../../Hooks/UseLogoutAdmin";
 import { UseLoginContextAdmin } from "../../Hooks/UseLoginContextAdmin";
+import Country from "../Country";
 
 const NavLinks = props=>{
     const {student} = UseLoginContext()
@@ -31,6 +32,7 @@ const NavLinks = props=>{
       }
     return( 
     <ul className="nav-links">
+
         {student &&
             
         <li>
@@ -64,6 +66,9 @@ const NavLinks = props=>{
         <li>
             <NavLink to ="/studentsignup">SignUp</NavLink>
         </li>}
+        <li>
+            <Country/>
+        </li>
 
         
         
