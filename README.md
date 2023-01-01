@@ -12,20 +12,7 @@ Currently Online Learning Platform is a Minimum Value Product (MVP), which can b
 
 ## Some Screenshots from the website
 
-1. Landing page
-   ![Manga Flights landing page](/assets/screenshots/landing-page.png)
-2. Sign Up form
-   ![Manga Flights Signup form](/assets/screenshots/sign-up-form.png)
-3. Sign In form
-   ![Manga Flights Signin form](/assets/screenshots/sign-in-form.png)
-4. Search Results
-   ![Manga Flights Search results page](/assets/screenshots/search-results.png)
-5. Flights Chosen
-   ![Manga Flights chosen flights](/assets/screenshots/chosen-flights.png)
-6. Checkout page
-   ![Manga Flights chosen flights](/assets/screenshots/checkout-page.png)
-7. View Itinerary page
-   ![Manga Flights chosen flights](/assets/screenshots/reservation-itinerary.png)
+
 
 ## Technology used
 
@@ -288,38 +275,7 @@ Additional libraries used:
 
 ### What can you do on the portal
 
-- Login/Signup to the portal
-- Go to the admin dashboard if signed in with admin account
-
-  - Add a flight
-  - Update a flight
-  - Search for specific flights
-  - Delete flights
-
-- Use the main search in the landing page
-
-  - View the search results
-  - Choose a departure flight
-  - Choose a return flight
-  - Confirm and Checkout
-  - Choose seats for both flights
-  - Pay for the flights
-  - Confirm and reserve
-
-- Go to your profile
-
-  - List your reserved flights
-
-    - Choose to update the seats in one of the flights
-    - Choose to change a flight in one of the reservations
-    - Cancel a reservation
-    - Email yourself an itinerary of a reservation
-
-  - Update your personal informations
-
-  - Update your password
-
-  - Logout
+- 
 
 ## Contribute
 
