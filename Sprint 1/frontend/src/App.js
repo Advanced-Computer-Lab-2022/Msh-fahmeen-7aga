@@ -50,11 +50,13 @@ function App() {
           <Routes>
             <Route exact path="/" element={<HomePage />} />
 
-            <Route exact path="/problems" element={<ProblemList />} />
             <Route
-              exact
+              path="/problems"
+              element={admin ? <ProblemList /> : <Navigate to="/adminlogin" />}
+            />
+            <Route
               path="/solvedproblems"
-              element={<ResolvedProblemList />}
+              element={admin ? <ResolvedProblemList /> : <Navigate to="/adminlogin" />}
             />
             <Route exact path="/terms" element={<TermsAndConditions />} />
             <Route exact path="/mycourses" element={<StudentCourses />} />
@@ -71,7 +73,10 @@ function App() {
               element={<ContractDetails />}
             />
 
-            <Route exact path="/notifications" element={<Notifications />} />
+<Route
+              path="/notifications"
+              element={admin ? <Notifications /> : <Navigate to="/adminlogin" />}
+            />
 
             <Route
               exact
