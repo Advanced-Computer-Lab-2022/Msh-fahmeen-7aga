@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { UseInstructorLogin } from '../Hooks/UseLoginInst';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { UseInstructorLogin } from "../Hooks/UseLoginInst";
 
 const LogIninst = () => {
-  const [Email, setEmail] = useState('');
-  const [Password, setPassword] = useState('');
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
   const { login, error, isLoading } = UseInstructorLogin();
 
   const handleSubmit = async (e) => {

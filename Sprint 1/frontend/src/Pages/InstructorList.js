@@ -1,6 +1,5 @@
-import React from 'react';
-import InstDetails from '../Components/Allinstructors'
-
+import React from "react";
+import InstDetails from "../Components/Allinstructors";
 
 function InstructorsPage() {
   return (

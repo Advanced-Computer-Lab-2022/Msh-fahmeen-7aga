@@ -12,6 +12,7 @@ const USERROUTES = require('./Routes/Student')
 const USERROUTESINS = require('./Routes/Instructor')
 const USERROUTESADMIN = require('./Routes/Admin')
 const USERROUTESTRAINEE = require('./Routes/Trainee')
+const EXERCISEROUTES = require('./Routes/ExerciseRoutes')
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -45,3 +46,4 @@ app.use('/user', USERROUTES)
 app.use('/userinstructor', USERROUTESINS)
 app.use('/useradmin', USERROUTESADMIN)
 app.use('/usertrainee', USERROUTESTRAINEE)
+app.use('/exercise', EXERCISEROUTES)

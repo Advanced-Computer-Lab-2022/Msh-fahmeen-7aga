@@ -5,7 +5,7 @@ import { UseLoginContextTrainee } from "./Hooks/UseLoginContextTrainee";
 import { UseLoginContextAdmin } from "./Hooks/UseLoginContextAdmin";
 
 import NavBar from "./Components/NavBar";
-import ContractDetails from './Components/Contractdetails';
+import ContractDetails from "./Components/Contractdetails";
 import Admin from "./Pages/Admin";
 import Guest from "./Pages/Guest";
 import HomePage from "./Pages/HomePage";
@@ -35,12 +35,11 @@ import SignUpadmin from "./Pages/AdminSignup";
 
 import PasswordResetEmailSent from "./Components/Passreset";
 
-
 function App() {
   const { student } = UseLoginContext();
   const { instructor } = UseLoginContextInst();
-  const {trainee} = UseLoginContextTrainee();
-  const {admin} = UseLoginContextAdmin();
+  const { trainee } = UseLoginContextTrainee();
+  const { admin } = UseLoginContextAdmin();
 
   return (
     <div className="App">
@@ -51,7 +50,11 @@ function App() {
             <Route exact path="/" element={<HomePage />} />
 
             <Route exact path="/problems" element={<ProblemList />} />
-            <Route exact path="/solvedproblems" element={<ResolvedProblemList />} />
+            <Route
+              exact
+              path="/solvedproblems"
+              element={<ResolvedProblemList />}
+            />
             <Route exact path="/terms" element={<TermsAndConditions />} />
             <Route exact path="/mycourses" element={<StudentCourses />} />
 
@@ -61,7 +64,11 @@ function App() {
               element={!student ? <LogIn /> : <Navigate to="/student" />}
             />
 
-            <Route exact path="/contract-details" element={<ContractDetails />} />
+            <Route
+              exact
+              path="/contract-details"
+              element={<ContractDetails />}
+            />
 
             <Route exact path="/notifications" element={<Notifications />} />
 
@@ -81,31 +88,25 @@ function App() {
               }
             />
 
-<Route
+            <Route
               exact
               path="/adminsignup"
-              element={
-                !admin ? <SignUpadmin /> : <Navigate to="/Admin" />
-              }
+              element={!admin ? <SignUpadmin /> : <Navigate to="/Admin" />}
             />
 
-<Route
+            <Route
               exact
               path="/adminlogin"
-              element={
-                !admin ? <LogInadmin /> : <Navigate to="/Admin" />
-              }
+              element={!admin ? <LogInadmin /> : <Navigate to="/Admin" />}
             />
 
-<Route
+            <Route
               exact
               path="/traineelogin"
-              element={
-                !trainee ? <LogIntrainee /> : <Navigate to="/trainee" />
-              }
+              element={!trainee ? <LogIntrainee /> : <Navigate to="/trainee" />}
             />
 
-<Route
+            <Route
               exact
               path="/traineesignup"
               element={
@@ -119,7 +120,6 @@ function App() {
               element={!student ? <SignUp /> : <Navigate to="/terms" />}
             />
 
-
             <Route
               path="/Instructor"
               element={instructor ? <Instructor /> : <Navigate to="/" />}
@@ -130,18 +130,21 @@ function App() {
               element={student ? <Student /> : <Navigate to="/" />}
             />
 
-<Route
+            <Route
               path="/admin"
               element={admin ? <Admin /> : <Navigate to="/" />}
             />
 
             <Route path="/trainee" element={<Trainee />} />
             <Route path="/enrolledcourses" element={<RegisteredCourses />} />
-            <Route path="/forgotpassword" element={< Forgotpassword/>} />
-            <Route exact path="/upload" element={< UploadPdfForm/>} />
+            <Route path="/forgotpassword" element={<Forgotpassword />} />
+            <Route exact path="/upload" element={<UploadPdfForm />} />
 
             <Route path="/guest" element={<Guest />} />
-            <Route path="/resetconfirmation" element={<PasswordResetEmailSent />} />
+            <Route
+              path="/resetconfirmation"
+              element={<PasswordResetEmailSent />}
+            />
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/allteachers" element={<InstructorsPage />} />
             <Route exact path="/Passwordchange" element={<Passchange />} />

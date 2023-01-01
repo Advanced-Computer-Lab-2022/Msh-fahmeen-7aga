@@ -28,8 +28,6 @@ const HomePage = () => {
       </Link>
 
       <PopularCourses />
-
-
     </div>
   );
 };

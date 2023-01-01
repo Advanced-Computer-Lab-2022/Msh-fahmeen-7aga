@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { UseAdminLogin } from '../Hooks/UseLoginAdmin';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { UseAdminLogin } from "../Hooks/UseLoginAdmin";
 
 const LogInadmin = () => {
-  const [Email, setEmail] = useState('');
-  const [Password, setPassword] = useState('');
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
   const { login, error, isLoading } = UseAdminLogin();
 
   const handleSubmit = async (e) => {
