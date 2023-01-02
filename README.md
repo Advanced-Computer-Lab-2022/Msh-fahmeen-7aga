@@ -14,7 +14,7 @@ Currently Online Learning Platform is a Minimum Value Product (MVP), which can b
 ## Some Screenshots from the website
 
 1. Landing page
-   ![ landing page](/assets/LandingPage.png)
+   (![Landing Page](assets/Screenshots/landing-page.png))
 2. Sign Up form
    ![ Signup form](/assets/screenshots/sign-up-form.png)
 3. 

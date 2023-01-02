@@ -156,7 +156,7 @@ function App() {
             <Route path="/allteachers" element={<InstructorsPage />} />
             <Route exact path="/Passwordchange" element={<Passchange />} />
             <Route exact path="/Report" element={<Report />} />
-            <Route path="/profile" element={<Profile />} />
+            {/* <Route path="/profile" element={<Profile />} /> */}
           </Routes>
         </div>
         </main>

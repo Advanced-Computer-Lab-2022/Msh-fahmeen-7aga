@@ -44,11 +44,11 @@ const NavLinks = props=>{
         </li>
         
         }
-        {student &&
+        {/* {student &&
         <li>
         <NavLink to ={'/profile'}> Profile </NavLink>
          </li>
-    }
+    } */}
     {student &&
         <li>
             <button onClick={handleClick}>LogOut</button>
