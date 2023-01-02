@@ -3,12 +3,14 @@ import { UseLoginContextTrainee } from "../Hooks/UseLoginContextTrainee";
 import { UseLogouttrainee } from "../Hooks/UseLogoutTrainee";
 import { Link } from "react-router-dom";
 
+
 //Components
 import CourseDetailsnp from "../Components/CourseDetailsNoPrice";
-
+import RatingFilter from "../Components/RatingFilter";
 const Trainee = () => {
   const [courses, setCourses] = useState(null);
   const [searchterm, setsearchterm] = useState("");
+  const [rating, setrating] = useState(null);
   const { trainee } = UseLoginContextTrainee();
   const { logout } = UseLogouttrainee();
 
@@ -49,7 +51,7 @@ const Trainee = () => {
           name="s"
         />
         <button type="submit">Search</button>
-
+        <RatingFilter rating={rating} setrating={setrating} />
         <div className="Courses">
           <h3>All courses</h3>
           {courses &&
@@ -60,6 +62,13 @@ const Trainee = () => {
                 } else if (
                   course.title.toLowerCase().includes(searchterm.toLowerCase())
                 ) {
+                  return course;
+                }
+              })
+              .filter((course) => {
+                if (rating == null) {
+                  return course;
+                } else if (course.avgRating >= rating) {
                   return course;
                 }
               })

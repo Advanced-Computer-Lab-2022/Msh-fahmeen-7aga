@@ -4,7 +4,6 @@ import { UseLoginContextInst } from "./Hooks/UseLoginContextInst";
 import { UseLoginContextTrainee } from "./Hooks/UseLoginContextTrainee";
 import { UseLoginContextAdmin } from "./Hooks/UseLoginContextAdmin";
 
-import NavBar from "./Components/NavBar";
 import ContractDetails from "./Components/Contractdetails";
 import Admin from "./Pages/Admin";
 import Guest from "./Pages/Guest";
@@ -48,6 +47,7 @@ function App() {
         <main>
         <div className="pages">
           <Routes>
+        
             <Route exact path="/" element={<HomePage />} />
 
             <Route exact path="/problems" element={<ProblemList />} />

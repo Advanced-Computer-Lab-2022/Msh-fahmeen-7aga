@@ -5,11 +5,16 @@ import { Link } from "react-router-dom";
 
 //Components
 import CourseDetails from "../Components/CourseDetails";
+import PriceFilter from "../Components/PriceFilter";
+import RatingFilter from "../Components/RatingFilter";
 
 const Student = () => {
   const { courses, dispatch } = UseCourseContext();
   const { student } = UseLoginContext();
   const [searchterm, setsearchterm] = useState("");
+  const [rating, setrating] = useState(null);
+  const [priceMin, setpriceMin] = useState(null);
+  const [priceMax, setpriceMax] = useState(null);
   const [selectedCountry, setSelectedCountry] = useState("USD");
   const [exchangeRates, setExchangeRates] = useState({});
   const [localPrices, setLocalPrices] = useState({});
@@ -36,6 +41,7 @@ const Student = () => {
 
   return (
     <div className="student">
+     
       <label htmlFor="header-search">
         <span className="visually-hidden">Search For Courses</span>
       </label>
@@ -49,13 +55,18 @@ const Student = () => {
         name="s"
       />
       <button type="submit">Search</button>
-
       <Link to="/enrolledcourses">
         <button>My Courses</button>
       </Link>
+      <PriceFilter
+        setMin={setpriceMin}
+        setMax={setpriceMax}
+        placeholder="Minimum"
+      />
+      <RatingFilter setRating={setrating} />
 
       <div className="Courses">
-        <h3>All courses:</h3>
+        <h3>Your courses</h3>
         {courses &&
           courses
             .filter((course) => {
@@ -64,6 +75,30 @@ const Student = () => {
               } else if (
                 course.title.toLowerCase().includes(searchterm.toLowerCase())
               ) {
+                return course;
+              }
+            })
+            .filter((course) => {
+              if (priceMin == null && priceMax == null) {
+                return course;
+              } else if (priceMin != null && priceMax == null) {
+                if (course.price >= priceMin) {
+                  return course;
+                }
+              } else if (priceMin == null && priceMax != null) {
+                if (course.price <= priceMax) {
+                  return course;
+                }
+              } else {
+                if (course.price >= priceMin && course.price <= priceMax) {
+                  return course;
+                }
+              }
+            })
+            .filter((course) => {
+              if (rating == null) {
+                return course;
+              } else if (course.avgRating >= rating) {
                 return course;
               }
             })

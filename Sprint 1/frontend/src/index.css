@@ -51,7 +51,7 @@ position: left;
 .search{
   padding-right: 27rem;
 }
-.workout-details {
+.course-details {
   background: #fff;
   border-radius: 4px;
   margin: 20px auto;
@@ -59,23 +59,23 @@ position: left;
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
 }
-.workout-details h4 {
+.course-details h4 {
   margin: 0 0 10px 0;
   font-size: 1.2em;
   color: var(--primary);
 }
-.workout-details p {
+.course-details p {
   margin: 0;
   font-size: 0.9em;
   color: #555;
 }
-.workout-details span {
+.course-details span {
   position: absolute;
   top: 20px;
   right: 20px;
   cursor: pointer;
   background: #f1f1f1;
-  padding: 6px;
+  padding: 0px;
   border-radius: 50%;
   color: #333;
 }
@@ -132,6 +132,15 @@ div button {
   border-radius: 4px;
   cursor: pointer;
 }
+
+
+/*make container full width*/
+/* .container-fluid{
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: auto;
+  margin-left: auto;
+} */
 
 .header-search{
   padding-right: 4rem;

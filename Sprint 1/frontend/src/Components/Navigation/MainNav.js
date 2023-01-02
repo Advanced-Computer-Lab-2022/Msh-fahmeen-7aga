@@ -9,7 +9,7 @@ const MainNav = props =>{
 return(
     <MainHeader>
     <h1 className="main-navigation__title">
-        <Link to = "/"> WebName</Link> 
+        <Link to = "/"> Online Learning Platform</Link> 
         </h1> 
         <nav>
             <NavLinks/>

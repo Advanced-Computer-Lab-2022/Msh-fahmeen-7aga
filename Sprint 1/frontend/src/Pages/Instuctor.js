@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 //Components
 import CourseDetails from "../Components/Coursedetailsadmin";
 import CourseForm from "../Components/CourseForm";
+import ExerciseForm from "../Components/ExerciseForm";
 import PriceFilter from "../Components/PriceFilter";
 import RatingFilter from "../Components/RatingFilter";
 import Card from "../Components/Card";
@@ -112,7 +113,7 @@ const Instructor = () => {
               .filter((course) => {
                 if (rating == null) {
                   return course;
-                } else if (course.rating >= rating) {
+                } else if (course.avgRating >= rating) {
                   return course;
                 }
               })
@@ -124,6 +125,7 @@ const Instructor = () => {
         </div>
 
         <CourseForm />
+        {/* <ExerciseForm/> */}
       </div>
     );
   }
