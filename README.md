@@ -16,8 +16,20 @@ Currently Online Learning Platform is a Minimum Value Product (MVP), which can b
 1. Landing page
    (![Landing Page](assets/Screenshots/landing-page.png))
 2. Sign Up form
-   ![ Signup form](/assets/screenshots/sign-up-form.png)
-3. 
+   (![Sign-up form](assets/Screenshots/signup-form.png))
+3. Admin Dashboard
+   (![Admin add users](assets/Screenshots/admin-add-users.png))
+4. Admin set promotion
+   (![Admin set promotion](assets/Screenshots/admin-set-promotion.png))
+5. Instructor add course
+   ![Instructor add course](assets/Screenshots/instructor-add-course.png)
+6. Student Courses
+   ![Student Courses](assets/Screenshots/student-courses.png)
+   ![Student Courses2](assets/Screenshots/student-courses2.png)
+7. Take a Quiz
+   ![Take a Quiz](assets/Screenshots/take-quiz.png)
+8. Report an issue 
+   ![Report an issue](assets/Screenshots/report.png)
 
 
 
