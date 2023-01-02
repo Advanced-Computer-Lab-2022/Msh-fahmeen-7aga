@@ -7,37 +7,37 @@ const Exercise = () => {
     {
       questionText: "What is React?",
       answerOptions: [
-        { answerText: "idk", isCorrect: false },
-        { answerText: "frontend", isCorrect: false },
-        { answerText: "batates", isCorrect: true },
+        { answerText: "programming language", isCorrect: false },
+        { answerText: "database", isCorrect: false },
+        { answerText: "frontend", isCorrect: true },
         { answerText: "backend", isCorrect: false },
       ],
     },
     {
-      questionText: "will this code work?",
+      questionText: "what is JavaScript?",
       answerOptions: [
-        { answerText: "yes", isCorrect: false },
-        { answerText: "batates", isCorrect: true },
-        { answerText: "no", isCorrect: false },
-        { answerText: "idk", isCorrect: false },
+        { answerText: "programming language", isCorrect: true },
+        { answerText: "database", isCorrect: false },
+        { answerText: "frontend", isCorrect: false },
+        { answerText: "backend", isCorrect: false },
       ],
     },
     {
       questionText: "what is 2x2?",
       answerOptions: [
-        { answerText: "batates", isCorrect: true },
-        { answerText: "4", isCorrect: false },
-        { answerText: "32", isCorrect: false },
+        { answerText: "7", isCorrect: false },
+        { answerText: "4", isCorrect: true },
+        { answerText: "21", isCorrect: false },
         { answerText: "5", isCorrect: false },
       ],
     },
     {
-      questionText: "last question?",
+      questionText: "is this the last question?",
       answerOptions: [
         { answerText: "no", isCorrect: false },
-        { answerText: "yes", isCorrect: false },
-        { answerText: "nooooo", isCorrect: false },
-        { answerText: "batates", isCorrect: true },
+        { answerText: "yes", isCorrect: true },
+        { answerText: "maybe", isCorrect: false },
+        { answerText: "idk", isCorrect: false },
       ],
     },
   ];
