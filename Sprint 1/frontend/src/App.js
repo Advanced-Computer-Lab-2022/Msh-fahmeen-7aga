@@ -33,7 +33,8 @@ import LogInadmin from "./Pages/AdminLogin";
 import SignUpadmin from "./Pages/AdminSignup";
 import Report from "./Pages/Report";
 import PasswordResetEmailSent from "./Components/Passreset";
-import MainNav from './Components/Navigation/MainNav'
+import MainNav from './Components/Navigation/MainNav';
+import Profile from "./Components/Profile";
 function App() {
   const { student } = UseLoginContext();
   const { instructor } = UseLoginContextInst();
@@ -140,7 +141,7 @@ function App() {
               path="/admin"
               element={admin ? <Admin /> : <Navigate to="/" />}
             />
-
+            
             <Route path="/trainee" element={<Trainee />} />
             <Route path="/enrolledcourses" element={<RegisteredCourses />} />
             <Route path="/forgotpassword" element={<Forgotpassword />} />
@@ -155,6 +156,7 @@ function App() {
             <Route path="/allteachers" element={<InstructorsPage />} />
             <Route exact path="/Passwordchange" element={<Passchange />} />
             <Route exact path="/Report" element={<Report />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>
         </main>
