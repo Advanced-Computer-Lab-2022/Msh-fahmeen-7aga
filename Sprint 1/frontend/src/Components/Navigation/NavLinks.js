@@ -58,11 +58,11 @@ const NavLinks = props=>{
             <button onClick={handleInsClick}>LogOut</button>
         </li>
     }
-      {!student &&     
+      {!student && !instructor && !admin &&     
         <li>
             <NavLink to ="/studentlogin">LogIn</NavLink>
         </li>}
-       {!student &&
+       {!student && !instructor && !admin &&  
         <li>
             <NavLink to ="/studentsignup">SignUp</NavLink>
         </li>}
