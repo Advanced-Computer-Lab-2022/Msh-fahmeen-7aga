@@ -22,7 +22,7 @@ const PopularCourses = () => {
       return (
         <div className="course-details" key={course._id}>
           <Card>
-            <h4>Title{course.title}</h4>
+            <h4>{course.title}</h4>
             <p>Number of students {course.studentCount}</p>
           </Card>
         </div>
