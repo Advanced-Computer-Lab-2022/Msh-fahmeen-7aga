@@ -13,6 +13,7 @@ const Navbar = () => {
   const handleClick = () => {
     logout()
   }
+  
 
   return (
     <header>
@@ -24,6 +25,7 @@ const Navbar = () => {
           {student && (  
           <div>
             <span>{student.FirstName}</span>
+           
             <button onClick={handleClick}>Log out</button>
           </div>
           )}

@@ -10,7 +10,7 @@ function StudentCourses() {
     
     async function fetchData() {
       const studentId = '63b08461374a6ed4ee08f84e'
-      const response = await axios.post('http://localhost:4000/guest/fetch-student-courses', { studentId })
+      const response = await axios.get('http://localhost:4000/guest/fetch-student-courses', { studentId })
       setCourses(response.data)
     }
     fetchData()
