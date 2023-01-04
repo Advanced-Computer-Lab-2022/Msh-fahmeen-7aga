@@ -8,16 +8,13 @@ Online Learning Platform is a university project for CSEN704 - Advanced Computer
 
 Currently Online Learning Platform is a Minimum Value Product (MVP), which can be used by customers and let us observe how they interact with the system.
 
-
-
-
 ## Some Screenshots from the website
 
 1. Landing page
    (![Landing Page](assets/Screenshots/landing-page.png))
 2. Sign Up form
    (![Sign-up form](assets/Screenshots/signup-form.png))
-3. Admin add Users
+3. Admin 
    (![Admin add users](assets/Screenshots/admin-add-users.png))
 4. Admin set promotion
    (![Admin set promotion](assets/Screenshots/admin-set-promotion.png))
@@ -28,10 +25,8 @@ Currently Online Learning Platform is a Minimum Value Product (MVP), which can b
    ![Student Courses](assets/Screenshots/student-courses.png)
 7. Take a Quiz
    ![Take a Quiz](assets/Screenshots/take-quiz.png)
-8. Report an issue 
+8. Report an issue
    ![Report an issue](assets/Screenshots/report.png)
-
-
 
 ## Technology used
 
@@ -44,12 +39,11 @@ This web application was build with MERN stack:
 
 Additional libraries used:
 
-
 - Axios - promise-based http client
 - Youtube-React a react Youtube Client
 - bcryptjs
 - mongoose - Object Document Mapper (ODM) of choice
-- Material UI 
+- Material UI
 - Bootstrap
 
 ## Features
@@ -108,7 +102,6 @@ Additional libraries used:
 
 ## API reference
 
-
 ### auth
 
 1.  /studentsignup (POST)
@@ -132,12 +125,9 @@ Additional libraries used:
             "password": "string",
          }
 
-
 ### Courses
 
-
-
-3.  /viewcourses (GET) 
+3.  /viewcourses (GET)
 
     Request body (json)
 
@@ -151,8 +141,7 @@ Additional libraries used:
             "LessonVideoIDs": "String"
          }
 
-
-4.  /popularcourses (POST) 
+4.  /popularcourses (POST)
 
     Request body (json)
 
@@ -165,8 +154,6 @@ Additional libraries used:
             "VideoID": "String"
             "LessonVideoIDs": "String"
          }
-
-
 
 5.  /registered-courses (GET)
 
@@ -182,7 +169,7 @@ Additional libraries used:
             "LessonVideoIDs": "String"
          }
 
-6.  /:id (GET) 
+6.  /:id (GET)
 
     Request body (json)
 
@@ -195,6 +182,7 @@ Additional libraries used:
             "VideoID": "String"
             "LessonVideoIDs": "String"
          }
+
 ## Admin
 
 7.  /problems (POST)
@@ -209,10 +197,10 @@ Additional libraries used:
 8.  /mark-problem-as-resolved (POST)
 
     Request body (json)
-         {
-            "Problem": "string",
-            "CourseName": "string",
-         }
+    {
+    "Problem": "string",
+    "CourseName": "string",
+    }
 
 ## Students
 
@@ -241,8 +229,8 @@ Additional libraries used:
 
 ### /instructor
 
+11. /CreateCourse (POST)
 
-11.  /CreateCourse (POST) 
 
     Request body (json)
 
@@ -258,49 +246,48 @@ Additional libraries used:
 
 ### Trainee
 
-12.  /request-access/:courseId (GET) 
-         {
-            "TraineeId": "string",
-            "CourseID": "string"
-         }
-    
+12. /request-access/:courseId (GET)
+    {
+    "TraineeId": "string",
+    "CourseID": "string"
+    }
 
 ### /exercise
 
 13. /createExercise (POST)
 
-   Request body (json)
-         {
-            "creator",
-            "title",
-            "questoin1text",
-            "question1answer",
-            "question2text",
-            "question2answer",
-            "question3text",
-            "question3answer",
-            "question4text",
-            "question4answer",
-         }
+Request body (json)
+{
+"creator",
+"title",
+"questoin1text",
+"question1answer",
+"question2text",
+"question2answer",
+"question3text",
+"question3answer",
+"question4text",
+"question4answer",
+}
 
 14. /instexercises/:instid (GET)
-   
-      Request body (json)
-            {
-               "creator",
-               "title",
-               "questoin1text",
-               "question1answer",
-               "question2text",
-               "question2answer",
-               "question3text",
-               "question3answer",
-               "question4text",
-               "question4answer",
-            }
+
+    Request body (json)
+    {
+    "creator",
+    "title",
+    "questoin1text",
+    "question1answer",
+    "question2text",
+    "question2answer",
+    "question3text",
+    "question3answer",
+    "question4text",
+    "question4answer",
+    }
 
 15. /:id (PATCH)
-   
+
          Request body (json)
                {
                   "creator",
@@ -319,23 +306,21 @@ Additional libraries used:
 
 17. /promotion (PUT)
 
-   Request body (json)
-         {
-            "cid":"String"
-            "oldPrice":"Number"
-            "discount":"Number",
-            "until":"Number"
-         }
+Request body (json)
+{
+"cid":"String"
+"oldPrice":"Number"
+"discount":"Number",
+"until":"Number"
+}
 
 18. /globalpromotion (PUT)
 
-   Request body (json)
-         {
-            "discount":"Number",
-            "until":"Number"
-         }         
-
-
+Request body (json)
+{
+"discount":"Number",
+"until":"Number"
+}
 
 ## Tests
 
@@ -347,7 +332,25 @@ Additional libraries used:
 
 ### What can you do on the portal
 
-- 
+- Go to admin dashboard if signed in as an admin:
+   - View all courses
+   - add admin/instructor/corporate trainee to the system 
+   - view all problems reported by students
+   - mark problems as resolved
+   - view course requests
+
+- Go to instructor dashboard if signed in as an instructor:
+   - View all courses
+   - Create a course
+   - View all exercises
+   - Create an exercise
+
+- Go to student dashboard if signed in as a student:
+   - View all registered courses
+   - View course details
+   - Register for a course
+   - report a problem
+ 
 
 ## Contribute
 
@@ -356,7 +359,7 @@ Pull requests are more than welcomed in this repository, feel free to open one t
 ## Credits
 
 Adham Ahmed
-Mohammed Walid
+Mohamed Walid
 Alaaeldin Abdelaziz
 Mostafa Yours
 Heejin
