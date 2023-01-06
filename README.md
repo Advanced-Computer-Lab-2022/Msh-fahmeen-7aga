@@ -196,11 +196,11 @@ Additional libraries used:
 
 8.  /mark-problem-as-resolved (POST)
 
-    Request body (json)
-    {
-    "Problem": "string",
-    "CourseName": "string",
-    }
+         Request body (json)
+         {
+            "Problem": "string",
+            "CourseName": "string",
+         }
 
 ## Students
 
@@ -247,48 +247,52 @@ Additional libraries used:
 ### Trainee
 
 12. /request-access/:courseId (GET)
-    {
-    "TraineeId": "string",
-    "CourseID": "string"
-    }
+
+         {
+            "TraineeId": "string",
+            "CourseID": "string"
+         }
 
 ### /exercise
 
 13. /createExercise (POST)
 
-Request body (json)
-{
-"creator",
-"title",
-"questoin1text",
-"question1answer",
-"question2text",
-"question2answer",
-"question3text",
-"question3answer",
-"question4text",
-"question4answer",
-}
+   Request body (json)
+
+         {
+            "creator",
+            "title",
+            "questoin1text",
+            "question1answer",
+            "question2text",
+            "question2answer",
+            "question3text",
+            "question3answer",
+            "question4text",
+            "question4answer",
+         }
 
 14. /instexercises/:instid (GET)
 
-    Request body (json)
-    {
-    "creator",
-    "title",
-    "questoin1text",
-    "question1answer",
-    "question2text",
-    "question2answer",
-    "question3text",
-    "question3answer",
-    "question4text",
-    "question4answer",
-    }
+   Request body (json)
+
+         {
+            "creator",
+            "title",
+            "questoin1text",
+            "question1answer",
+            "question2text",
+            "question2answer",
+            "question3text",
+            "question3answer",
+            "question4text",
+            "question4answer",
+         }
 
 15. /:id (PATCH)
 
-         Request body (json)
+   Request body (json)
+
                {
                   "creator",
                   "title",
@@ -306,21 +310,23 @@ Request body (json)
 
 17. /promotion (PUT)
 
-Request body (json)
-{
-"cid":"String"
-"oldPrice":"Number"
-"discount":"Number",
-"until":"Number"
-}
+   Request body (json)
+
+            {
+               "cid":"String"
+               "oldPrice":"Number"
+               "discount":"Number",
+               "until":"Number"
+            }
 
 18. /globalpromotion (PUT)
 
-Request body (json)
-{
-"discount":"Number",
-"until":"Number"
-}
+   Request body (json)
+
+            {
+               "discount":"Number",
+               "until":"Number"
+            }
 
 ## Tests
 
@@ -359,7 +365,11 @@ Pull requests are more than welcomed in this repository, feel free to open one t
 ## Credits
 
 Adham Ahmed
+
 Mohamed Walid
+
 Alaaeldin Abdelaziz
+
 Mostafa Yours
+
 Heejin
